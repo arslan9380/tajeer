@@ -1,3 +1,4 @@
+import 'package:event_app/app/constants.dart';
 import 'package:event_app/view/ui/splash/splash_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -8,14 +9,16 @@ class SplashView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<SplashViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Colors.white,
         body: Column(
           children: [
-            Image.asset("assets/top_image.png"),
+            // Image.asset("assets/top_image.png"),
             Spacer(),
-            Hero(tag: "logo", child: Image.asset("assets/logo.png")),
+            Container(
+                margin: EdgeInsets.symmetric(horizontal: hMargin),
+                child:
+                    Hero(tag: "logo", child: Image.asset("assets/logo.png"))),
             Spacer(),
-            Image.asset("assets/bottom_image.png"),
           ],
         ),
       ),

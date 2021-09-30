@@ -35,6 +35,9 @@ class _SignUpViewState extends State<SignUpView> {
                     margin: EdgeInsets.symmetric(horizontal: hMargin),
                     child: Column(
                       children: [
+                        SizedBox(
+                          height: Get.height * 0.08,
+                        ),
                         Center(
                           child: Text(
                             'Register',
@@ -49,17 +52,9 @@ class _SignUpViewState extends State<SignUpView> {
                           height: Get.height * 0.04,
                         ),
                         InputFieldWidget(
-                          hint: "First Name",
+                          hint: "Name",
                           prefixIcon: Icons.person,
                           controller: firstNameCon,
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        InputFieldWidget(
-                          hint: "Last Name",
-                          prefixIcon: Icons.person,
-                          controller: lastNameCon,
                         ),
                         SizedBox(
                           height: 10,
@@ -117,30 +112,6 @@ class _SignUpViewState extends State<SignUpView> {
                                   letterSpacing: 1.28,
                                 ),
                               ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 12,
-                        ),
-                        Center(
-                          child: Text(
-                            "OR",
-                            style: TextStyle(
-                              color: Theme.of(context).accentColor,
-                              fontSize: 16.0,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 12,
-                        ),
-                        Center(
-                          child: Text(
-                            "Register Using",
-                            style: TextStyle(
-                              color: Theme.of(context).accentColor,
-                              fontSize: 14,
                             ),
                           ),
                         ),

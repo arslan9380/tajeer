@@ -1,4 +1,5 @@
 import 'package:event_app/app/constants.dart';
+import 'package:event_app/view/ui/admin_home/admin_home_view.dart';
 import 'package:event_app/view/ui/signup/signup_view.dart';
 import 'package:event_app/view/widgets/filled_button.dart';
 import 'package:event_app/view/widgets/inputfield_widget.dart';
@@ -96,47 +97,23 @@ class _LoginViewState extends State<LoginView> {
                                       ],
                                     ),
                                   ),
-                                  Text(
-                                    'Forgot Password?',
-                                    style: TextStyle(
-                                      color: Theme.of(context).accentColor,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                  )
+                                  // Text(
+                                  //   'Forgot Password?',
+                                  //   style: TextStyle(
+                                  //     color: Theme.of(context).accentColor,
+                                  //     fontSize: 14,
+                                  //     fontWeight: FontWeight.normal,
+                                  //   ),
+                                  // )
                                 ],
                               ),
                               SizedBox(
                                 height: Get.height * 0.04,
                               ),
                               InkWell(
-                                // onTap: () => Get.to(() => DrawerView()),
+                                onTap: () => Get.to(() => AdminHomeView()),
                                 child: FilledButton(
                                   title: "LOGIN",
-                                ),
-                              ),
-                              SizedBox(
-                                height: 12,
-                              ),
-                              Center(
-                                child: Text(
-                                  "OR",
-                                  style: TextStyle(
-                                    color: Theme.of(context).accentColor,
-                                    fontSize: 16.0,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 12,
-                              ),
-                              Center(
-                                child: Text(
-                                  "Log in with",
-                                  style: TextStyle(
-                                    color: Theme.of(context).accentColor,
-                                    fontSize: 14,
-                                  ),
                                 ),
                               ),
                               SizedBox(

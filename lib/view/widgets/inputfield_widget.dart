@@ -60,7 +60,7 @@ class _InputFieldWidgetState extends State<InputFieldWidget> {
       inputFormatters: widget.keyboardType == TextInputType.number
           ? [FilteringTextInputFormatter.digitsOnly]
           : null,
-      textAlignVertical: TextAlignVertical.bottom,
+      textAlignVertical: TextAlignVertical.center,
       obscureText: widget.obscure ? obscure : widget.obscure,
       decoration: InputDecoration(
         hintText: widget.hint,
@@ -114,6 +114,10 @@ class _InputFieldWidgetState extends State<InputFieldWidget> {
   }
 
   OutlineInputBorder buildUnderlineInputBorder() {
-    return OutlineInputBorder(borderSide: BorderSide(color: Colors.black));
+    return OutlineInputBorder(
+        borderSide: BorderSide(
+          color: Theme.of(context).primaryColorLight,
+        ),
+        borderRadius: BorderRadius.circular(27.5));
   }
 }
