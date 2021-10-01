@@ -44,10 +44,7 @@ class _DescriptionFieldFieldState extends State<DescriptionField> {
       controller: widget.controller,
       textAlign:
           widget.textAlignCenter == true ? TextAlign.center : TextAlign.start,
-      style: TextStyle(
-        fontSize: 12,
-        color: Colors.white,
-      ),
+      style: TextStyle(color: Theme.of(context).accentColor, fontSize: 14),
       keyboardType: widget.keyboardType,
       obscureText: widget.obscure ? obscure : widget.obscure,
       decoration: InputDecoration(

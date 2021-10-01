@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.brown,
-          fontFamily: GoogleFonts.actor().fontFamily,
+          fontFamily: GoogleFonts.adamina().fontFamily,
           scaffoldBackgroundColor: Colors.white,
           primaryColor: Color(0xffddbd69),
           appBarTheme: AppBarTheme(

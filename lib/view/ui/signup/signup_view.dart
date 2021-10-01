@@ -1,5 +1,8 @@
 import 'package:event_app/app/constants.dart';
+import 'package:event_app/app/static_info.dart';
+import 'package:event_app/models/user_model.dart';
 import 'package:event_app/view/ui/signup/signup_viewmodel.dart';
+import 'package:event_app/view/ui/user_home/user_home_view.dart';
 import 'package:event_app/view/widgets/inputfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -94,7 +97,10 @@ class _SignUpViewState extends State<SignUpView> {
                           height: Get.height * 0.04,
                         ),
                         InkWell(
-                          // onTap: () => Get.to(() => DrawerView()),
+                          onTap: () {
+                            StaticInfo.userModel = UserModel(userType: "user");
+                            Get.to(() => UserHomeView());
+                          },
                           child: Container(
                             width: Get.width * 0.45,
                             height: 60,

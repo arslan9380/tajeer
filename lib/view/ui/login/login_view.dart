@@ -1,4 +1,6 @@
 import 'package:event_app/app/constants.dart';
+import 'package:event_app/app/static_info.dart';
+import 'package:event_app/models/user_model.dart';
 import 'package:event_app/view/ui/admin_home/admin_home_view.dart';
 import 'package:event_app/view/ui/signup/signup_view.dart';
 import 'package:event_app/view/widgets/filled_button.dart';
@@ -111,7 +113,11 @@ class _LoginViewState extends State<LoginView> {
                                 height: Get.height * 0.04,
                               ),
                               InkWell(
-                                onTap: () => Get.to(() => AdminHomeView()),
+                                onTap: () {
+                                  StaticInfo.userModel =
+                                      UserModel(userType: "admin");
+                                  Get.to(() => AdminHomeView());
+                                },
                                 child: FilledButton(
                                   title: "LOGIN",
                                 ),

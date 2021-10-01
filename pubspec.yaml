@@ -49,7 +49,19 @@ dependencies:
   cached_network_image: ^3.1.0
   font_awesome_flutter: ^9.1.0
   animated_bottom_navigation_bar: ^0.3.2
+  screenshot: ^1.2.3
+  permission_handler: ^8.1.6
+  image_gallery_saver: ^1.6.9
+  barcode_scan2: ^4.1.4
+  qr_flutter:
+  flutter_calendar_carousel: ^2.0.3
   flutter_launcher_name: ^0.0.1
+  image_picker: ^0.7.5
+  image_cropper: any
+  date_range_picker: ^1.0.7
+  day_night_time_picker: ^1.0.3+1
+
+
 
 dev_dependencies:
   flutter_test:

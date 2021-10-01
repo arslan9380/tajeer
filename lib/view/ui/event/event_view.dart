@@ -1,6 +1,6 @@
 import 'package:event_app/app/constants.dart';
+import 'package:event_app/app/static_info.dart';
 import 'package:event_app/models/blog_model.dart';
-import 'package:event_app/view/ui/admin_event/admin_event_viewmodel.dart';
 import 'package:event_app/view/widgets/event_tab_bar.dart';
 import 'package:event_app/view/widgets/event_tile.dart';
 import 'package:event_app/view/widgets/inputfield_widget.dart';
@@ -8,18 +8,20 @@ import 'package:event_app/view/widgets/no_event_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-class AdminEventView extends StatefulWidget {
+import 'event_viewmodel.dart';
+
+class EventView extends StatefulWidget {
   @override
-  _AdminEventViewState createState() => _AdminEventViewState();
+  _EventViewState createState() => _EventViewState();
 }
 
-class _AdminEventViewState extends State<AdminEventView> {
+class _EventViewState extends State<EventView> {
   TextEditingController searchCon = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<AdminEventViewModel>.reactive(
-        viewModelBuilder: () => AdminEventViewModel(),
+    return ViewModelBuilder<EventViewModel>.reactive(
+        viewModelBuilder: () => EventViewModel(),
         builder: (context, model, child) => Scaffold(
               backgroundColor: Colors.white,
               body: SingleChildScrollView(
@@ -37,7 +39,8 @@ class _AdminEventViewState extends State<AdminEventView> {
                       SizedBox(
                         height: 10,
                       ),
-                      EventTabBar(model),
+                      if (StaticInfo.userModel.userType == "admin")
+                        EventTabBar(model),
                       SizedBox(
                         height: 10,
                       ),

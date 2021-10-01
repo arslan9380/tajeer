@@ -1,10 +1,10 @@
-import 'package:event_app/view/ui/admin_event/admin_event_viewmodel.dart';
+import 'package:event_app/view/ui/event/event_viewmodel.dart';
 import 'package:flutter/material.dart';
 
 import 'event_tab.dart';
 
 class EventTabBar extends StatelessWidget {
-  final AdminEventViewModel model;
+  final EventViewModel model;
   EventTabBar(this.model);
 
   @override

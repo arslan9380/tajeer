@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:event_app/app/static_info.dart';
 import 'package:event_app/models/blog_model.dart';
 import 'package:event_app/view/widgets/rect_image.dart';
 import 'package:flutter/material.dart';
@@ -73,20 +74,73 @@ class EventDetailView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "•Posted Date: ",
+                        "Date: ",
                         style: TextStyle(
                             fontSize: 14,
                             color: Theme.of(context).primaryColor,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        DateFormat("E-d-MMM-y").format(blogModel.timeOfBlog),
+                        DateFormat("E-d-MMM-y").format(blogModel.timeOfBlog) +
+                            " to " +
+                            DateFormat("E-d-MMM-y")
+                                .format(blogModel.timeOfBlog),
+                        style: TextStyle(fontSize: 14, color: Colors.black),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Start Time: ",
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Theme.of(context).primaryColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        DateFormat(DateFormat.HOUR_MINUTE)
+                            .format(blogModel.timeOfBlog),
+                        style: TextStyle(fontSize: 14, color: Colors.black),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Price: ",
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Theme.of(context).primaryColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        "100.0 USD",
                         style: TextStyle(fontSize: 14, color: Colors.black),
                       ),
                     ],
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 16,
+                  ),
+                  if (StaticInfo.userModel.userType != "admin")
+                    Container(
+                      width: Get.width * 0.7,
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).primaryColor,
+                          borderRadius: BorderRadius.circular(27.5)),
+                      child: Center(
+                        child: Text(
+                          "Join Now",
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                      ),
+                    ),
+                  SizedBox(
+                    height: 30,
                   ),
                 ],
               ),
