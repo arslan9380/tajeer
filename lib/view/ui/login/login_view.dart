@@ -1,7 +1,4 @@
 import 'package:event_app/app/constants.dart';
-import 'package:event_app/app/static_info.dart';
-import 'package:event_app/models/user_model.dart';
-import 'package:event_app/view/ui/admin_home/admin_home_view.dart';
 import 'package:event_app/view/ui/signup/signup_view.dart';
 import 'package:event_app/view/widgets/filled_button.dart';
 import 'package:event_app/view/widgets/inputfield_widget.dart';
@@ -19,8 +16,8 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  TextEditingController emailCon = TextEditingController();
-  TextEditingController passwordCon = TextEditingController();
+  TextEditingController emailCon = TextEditingController(text: "user@user.com");
+  TextEditingController passwordCon = TextEditingController(text: "123456");
 
   @override
   Widget build(BuildContext context) {
@@ -69,54 +66,45 @@ class _LoginViewState extends State<LoginView> {
                                 obscure: true,
                                 controller: passwordCon,
                               ),
-                              SizedBox(
-                                height: 16,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Flexible(
-                                    child: Row(
-                                      children: [
-                                        Transform.scale(
-                                          scale: 0.7,
-                                          child: CupertinoSwitch(
-                                              value: model.isRemember,
-                                              activeColor: Theme.of(context)
-                                                  .primaryColor,
-                                              onChanged: model.setIsRemember),
-                                        ),
-                                        Text(
-                                          'Remember me',
-                                          style: TextStyle(
-                                            color:
-                                                Theme.of(context).accentColor,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  // Text(
-                                  //   'Forgot Password?',
-                                  //   style: TextStyle(
-                                  //     color: Theme.of(context).accentColor,
-                                  //     fontSize: 14,
-                                  //     fontWeight: FontWeight.normal,
-                                  //   ),
-                                  // )
-                                ],
-                              ),
+                              // SizedBox(
+                              //   height: 16,
+                              // ),
+                              // Row(
+                              //   mainAxisAlignment:
+                              //       MainAxisAlignment.spaceBetween,
+                              //   children: [
+                              //     Flexible(
+                              //       child: Row(
+                              //         children: [
+                              //           Transform.scale(
+                              //             scale: 0.7,
+                              //             child: CupertinoSwitch(
+                              //                 value: model.isRemember,
+                              //                 activeColor: Theme.of(context)
+                              //                     .primaryColor,
+                              //                 onChanged: model.setIsRemember),
+                              //           ),
+                              //           Text(
+                              //             'Remember me',
+                              //             style: TextStyle(
+                              //               color:
+                              //                   Theme.of(context).accentColor,
+                              //               fontSize: 14,
+                              //               fontWeight: FontWeight.normal,
+                              //             ),
+                              //           )
+                              //         ],
+                              //       ),
+                              //     ),
+                              //   ],
+                              // ),
                               SizedBox(
                                 height: Get.height * 0.04,
                               ),
                               InkWell(
                                 onTap: () {
-                                  StaticInfo.userModel =
-                                      UserModel(userType: "admin");
-                                  Get.to(() => AdminHomeView());
+                                  model.loginUser(
+                                      emailCon.text, passwordCon.text);
                                 },
                                 child: FilledButton(
                                   title: "LOGIN",

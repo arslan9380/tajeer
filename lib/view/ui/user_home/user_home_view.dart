@@ -1,8 +1,10 @@
 import 'package:event_app/view/ui/calender/calander_view.dart';
 import 'package:event_app/view/ui/event/event_view.dart';
 import 'package:event_app/view/ui/user_home/user_home_viewmodel.dart';
+import 'package:event_app/view/ui/user_joined/user_joined_view.dart';
 import 'package:event_app/view/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 
@@ -22,13 +24,24 @@ class UserHomeView extends StatelessWidget {
                 ),
                 centerTitle: true,
                 automaticallyImplyLeading: false,
+                actions: [
+                  InkWell(
+                      onTap: () {
+                        model.logout();
+                      },
+                      child: Container(
+                          margin: EdgeInsets.only(right: 20),
+                          child: Icon(Icons.logout)))
+                ],
               ),
               body: IndexedStack(
                 index: model.currentIndex,
                 children: [EventView(), CalenderView()],
               ),
               floatingActionButton: FloatingActionButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => UserJoinedView());
+                },
                 backgroundColor: Theme.of(context).primaryColor,
                 elevation: 0.0,
                 child: Icon(

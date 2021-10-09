@@ -1,4 +1,4 @@
-package com.arslan.event_app
+package com.ar.event
 
 import io.flutter.embedding.android.FlutterActivity
 

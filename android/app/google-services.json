@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:628455438335:android:2fd1115fd9506c29dcd9ca",
+        "mobilesdk_app_id": "1:628455438335:android:b137f6bdc197801ddcd9ca",
         "android_client_info": {
-          "package_name": "com.arslan.eventapp"
+          "package_name": "com.ar.event"
         }
       },
       "oauth_client": [

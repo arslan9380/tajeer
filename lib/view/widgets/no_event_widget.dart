@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NoEventWidget extends StatelessWidget {
+  final bool isFromCompleted;
+
+  NoEventWidget(this.isFromCompleted);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,7 +25,7 @@ class NoEventWidget extends StatelessWidget {
           height: 10,
         ),
         Text(
-          "No Completed Events",
+          isFromCompleted ? "No Completed Events" : "No Upcoming Events",
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Theme.of(context).accentColor,

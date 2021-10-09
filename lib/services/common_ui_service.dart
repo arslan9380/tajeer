@@ -46,4 +46,29 @@ class CommonUiService {
 
     return isPublic;
   }
+
+  paymentDialog(String amount) async {
+    bool isPublic = false;
+    await Get.defaultDialog(
+        radius: 6,
+        barrierDismissible: false,
+        title: "Alert",
+        middleText:
+            "By continuing you will be asked for card details to pay $amount USD for this event.",
+        buttonColor: Colors.black,
+        cancelTextColor: Colors.black,
+        confirmTextColor: Colors.white,
+        textCancel: "  Cancel  ",
+        onCancel: () {
+          isPublic = false;
+          // Get.back();
+        },
+        textConfirm: "  Continue  ",
+        onConfirm: () async {
+          isPublic = true;
+          Get.back();
+        });
+
+    return isPublic;
+  }
 }
