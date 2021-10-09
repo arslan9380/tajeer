@@ -33,7 +33,9 @@ class AdminHomeView extends StatelessWidget {
                           useCamera: -1,
                           android: AndroidOptions(useAutoFocus: true)),
                     );
-                    if (codeScanner != null) {
+                    print(codeScanner);
+                    print(codeScanner.rawContent);
+                    if (codeScanner.rawContent != "") {
                       try {
                         EventModel eventModel = EventModel.fromMap(
                             json.decode(codeScanner.rawContent));

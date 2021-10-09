@@ -24,7 +24,7 @@ class CalenderWidget extends StatelessWidget {
             ),
           ]),
       width: Get.width,
-      height: 400,
+      height: 450,
       padding: EdgeInsets.all(3),
       margin: EdgeInsets.symmetric(horizontal: 10),
       child: CalendarCarousel<Event>(

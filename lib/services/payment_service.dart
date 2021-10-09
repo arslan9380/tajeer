@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:http/http.dart ' as http;
 import 'package:stripe_payment/stripe_payment.dart';
+import 'package:http/http.dart' as http;
 
 class StripeTranSection {
   String message;
