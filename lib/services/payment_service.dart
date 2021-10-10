@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:stripe_payment/stripe_payment.dart';
 import 'package:http/http.dart' as http;
+import 'package:stripe_payment/stripe_payment.dart';
 
 class StripeTranSection {
   String message;
@@ -18,9 +18,6 @@ class PaymentServices {
   static String publicKey =
       "pk_test_51JRVfULnAQYBCd6dTRUYOARtyQhe5FtFtX6K0RdrYOtqotvTQk0JKEFGVG6t0UWCX5sxMuQNqbenqACAhSxqoKA200HGitacAT";
 
-  // static String secret =
-  //     "sk_test_51IdCKVGY2Bg1GAh5aw4Zh8avpsebJDXEuHmZHYYmvvGlZkrgxFBhD7jABF8f6nXFvgVWQWzeFMAmknZb3OK5EgnN0037TNRtqr";
-
   static Map<String, String> headers = {
     'Authorization': "Bearer ${PaymentServices.secret}",
     'Content-Type': 'application/x-www-form-urlencoded'
@@ -28,12 +25,7 @@ class PaymentServices {
 
   static init() {
     StripePayment.setOptions(StripeOptions(
-        publishableKey:
-            // "pk_test_51IdCKVGY2Bg1GAh5jNECArhIkLKAifUDJm1ojOWk4hBYg0xqMjIhjqD5O6ow5LsSd8AioMSP4FHFtXwlubbuCOKK002nqVZhXc",
-
-            publicKey,
-        merchantId: "Test",
-        androidPayMode: 'test'));
+        publishableKey: publicKey, merchantId: "Test", androidPayMode: 'test'));
   }
 
   static payViaExistingCard(String amount, String currency, card) {
