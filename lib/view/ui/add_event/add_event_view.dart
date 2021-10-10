@@ -223,6 +223,7 @@ class _AddEventViewState extends State<AddEventView> {
                               InputFieldWidget(
                                 hint: "Price",
                                 controller: priceCon,
+                                keyboardType: TextInputType.number,
                               ),
                             SizedBox(
                               height: 16,

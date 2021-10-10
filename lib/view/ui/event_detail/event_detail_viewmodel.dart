@@ -49,8 +49,12 @@ class EventDetailViewModel extends BaseViewModel with CommonUiService {
     EventModel qrEventModel = EventModel.fromMap(eventModel.toMap());
     qrEventModel.startDate =
         DateFormat("E-d-MMM-y").format(eventModel.startDate.toDate());
-    qrEventModel.endDate =
-        DateFormat("E-d-MMM-y").format(eventModel.endDate.toDate());
+
+    if (eventModel.endDate != null) {
+      qrEventModel.endDate =
+          DateFormat("E-d-MMM-y").format(eventModel.endDate.toDate());
+    }
+
     qrEventModel.startTime = DateFormat(DateFormat.HOUR_MINUTE)
         .format(eventModel.startTime.toDate());
     qrData = json.encode(qrEventModel.toMap());
