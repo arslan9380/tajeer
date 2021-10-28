@@ -1,16 +1,14 @@
-import 'package:event_app/services/payment_service.dart';
-import 'package:event_app/view/ui/splash/splash_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tajeer/view/ui/splash/splash_view.dart';
 
 import 'app/locator.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  PaymentServices.init();
   setupLocator();
   runApp(MyApp());
 }
@@ -19,17 +17,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "What's the move",
+      title: "TAJEER",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primarySwatch: Colors.brown,
+          primarySwatch: Colors.blue,
           fontFamily: GoogleFonts.adamina().fontFamily,
           scaffoldBackgroundColor: Colors.white,
-          primaryColor: Color(0xffddbd69),
+          primaryColor: Color(0xff152e71),
           appBarTheme: AppBarTheme(
             iconTheme: IconThemeData(color: Colors.white),
           ),
-          primaryColorDark: Color(0xff785d2e)),
+          primaryColorDark: Color(0xfffdd900)),
       home: SplashView(),
     );
   }

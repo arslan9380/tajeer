@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:event_app/app/locator.dart';
-import 'package:event_app/models/event_model.dart';
-import 'package:event_app/services/common_ui_service.dart';
-import 'package:event_app/services/event_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:stacked/stacked.dart';
+import 'package:tajeer/app/locator.dart';
+import 'package:tajeer/models/event_model.dart';
+import 'package:tajeer/services/common_ui_service.dart';
+import 'package:tajeer/services/event_service.dart';
 
 class AddEventViewModel extends BaseViewModel {
   String eventImage = "";

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:event_app/models/user_model.dart';
+import 'package:tajeer/models/user_model.dart';
 
 class EventModel {
   String id;

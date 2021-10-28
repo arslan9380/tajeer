@@ -1,4 +1,4 @@
-package com.ar.event
+package com.ar.tajeer
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,9 +1,9 @@
-import 'package:event_app/app/locator.dart';
-import 'package:event_app/models/event_model.dart';
-import 'package:event_app/services/common_ui_service.dart';
-import 'package:event_app/services/event_service.dart';
 import 'package:injectable/injectable.dart';
 import 'package:stacked/stacked.dart';
+import 'package:tajeer/app/locator.dart';
+import 'package:tajeer/models/event_model.dart';
+import 'package:tajeer/services/common_ui_service.dart';
+import 'package:tajeer/services/event_service.dart';
 
 @singleton
 class EventViewModel extends IndexTrackingViewModel with CommonUiService {

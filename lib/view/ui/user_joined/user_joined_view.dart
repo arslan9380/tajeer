@@ -1,9 +1,9 @@
-import 'package:event_app/app/constants.dart';
-import 'package:event_app/view/ui/user_joined/user_joined_viewmodel.dart';
-import 'package:event_app/view/widgets/event_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:stacked/stacked.dart';
+import 'package:tajeer/app/constants.dart';
+import 'package:tajeer/view/ui/user_joined/user_joined_viewmodel.dart';
+import 'package:tajeer/view/widgets/event_tile.dart';
 
 class UserJoinedView extends StatelessWidget {
   @override

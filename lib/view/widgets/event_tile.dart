@@ -1,11 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:event_app/app/static_info.dart';
-import 'package:event_app/models/event_model.dart';
-import 'package:event_app/view/ui/event_detail/event_detail_view.dart';
-import 'package:event_app/view/widgets/rect_image.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:tajeer/models/event_model.dart';
+import 'package:tajeer/view/widgets/rect_image.dart';
 
 class EventTile extends StatelessWidget {
   final EventModel eventModel;
@@ -17,11 +14,7 @@ class EventTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Get.to(() => EventDetailView(
-              eventModel: eventModel,
-            ));
-      },
+      onTap: () {},
       child: Container(
         padding: EdgeInsets.all(12),
         margin: EdgeInsets.only(bottom: 20),
@@ -49,31 +42,6 @@ class EventTile extends StatelessWidget {
                         height: 200,
                       ),
                     ),
-                    StaticInfo.userModel.userType == "Admin"
-                        ? Container(
-                            margin: EdgeInsets.only(top: 10, right: 10),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                InkWell(
-                                  onTap: onDelete,
-                                  child: CircleAvatar(
-                                      radius: 16,
-                                      backgroundColor:
-                                          Theme.of(context).primaryColorDark,
-                                      child: Icon(
-                                        Icons.delete,
-                                        size: 20,
-                                        color: Colors.white,
-                                      )),
-                                )
-                              ],
-                            ),
-                          )
-                        : Container()
                   ],
                 ),
               ),

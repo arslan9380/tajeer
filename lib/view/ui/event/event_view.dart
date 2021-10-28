@@ -1,14 +1,12 @@
-import 'package:event_app/app/constants.dart';
-import 'package:event_app/app/locator.dart';
-import 'package:event_app/app/static_info.dart';
-import 'package:event_app/view/widgets/event_tab_bar.dart';
-import 'package:event_app/view/widgets/event_tile.dart';
-import 'package:event_app/view/widgets/inputfield_widget.dart';
-import 'package:event_app/view/widgets/no_event_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:stacked/stacked.dart';
+import 'package:tajeer/app/constants.dart';
+import 'package:tajeer/app/locator.dart';
+import 'package:tajeer/view/widgets/event_tile.dart';
+import 'package:tajeer/view/widgets/inputfield_widget.dart';
+import 'package:tajeer/view/widgets/no_event_widget.dart';
 
 import 'event_viewmodel.dart';
 
@@ -43,11 +41,6 @@ class _EventViewState extends State<EventView> {
                           hint: "Search Event by Title",
                           onChange: model.onFilter,
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        if (StaticInfo.userModel.userType == "admin")
-                          EventTabBar(model),
                         SizedBox(
                           height: 10,
                         ),

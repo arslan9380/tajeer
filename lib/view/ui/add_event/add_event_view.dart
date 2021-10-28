@@ -1,17 +1,14 @@
 import 'dart:io';
 
-import 'package:date_range_picker/date_range_picker.dart' as DateRangePicker;
-import 'package:day_night_time_picker/lib/constants.dart';
-import 'package:day_night_time_picker/lib/daynight_timepicker.dart';
-import 'package:event_app/app/constants.dart';
-import 'package:event_app/view/ui/add_event/add_event_viewmodel.dart';
-import 'package:event_app/view/widgets/description_field.dart';
-import 'package:event_app/view/widgets/inputfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:stacked/stacked.dart';
+import 'package:tajeer/app/constants.dart';
+import 'package:tajeer/view/widgets/description_field.dart';
+import 'package:tajeer/view/widgets/inputfield_widget.dart';
+
+import 'add_event_viewmodel.dart';
 
 class AddEventView extends StatefulWidget {
   @override
@@ -84,79 +81,6 @@ class _AddEventViewState extends State<AddEventView> {
                             SizedBox(
                               height: 10,
                             ),
-                            InkWell(
-                              onTap: () async {
-                                final List<DateTime> picked =
-                                    await DateRangePicker.showDatePicker(
-                                        context: context,
-                                        initialFirstDate: new DateTime.now(),
-                                        initialLastDate: (new DateTime.now())
-                                            .add(new Duration(days: 7)),
-                                        firstDate: new DateTime(2015),
-                                        lastDate: new DateTime(
-                                            DateTime.now().year + 2));
-                                if (picked != null) {
-                                  if (picked.length == 2) {
-                                    dateCon.text = DateFormat("d-MMM-y")
-                                            .format(picked[0]) +
-                                        " to " +
-                                        DateFormat("d-MMM-y").format(picked[1]);
-                                    model.pickedDate = picked;
-                                  } else {
-                                    dateCon.text =
-                                        DateFormat("d-MMM-y").format(picked[0]);
-                                    model.pickedDate = picked;
-                                  }
-                                  print(picked);
-                                }
-                              },
-                              child: InputFieldWidget(
-                                hint: "Event Date",
-                                enable: false,
-                                controller: dateCon,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            InkWell(
-                              onTap: () async {
-                                Navigator.of(context).push(
-                                  showPicker(
-                                    blurredBackground: true,
-                                    accentColor: Theme.of(context).primaryColor,
-                                    iosStylePicker: false,
-                                    context: context,
-                                    value: TimeOfDay.fromDateTime(
-                                        model.selectedTime),
-                                    onChange: (value) {
-                                      timeCon.text =
-                                          DateFormat(DateFormat.HOUR_MINUTE)
-                                              .format(model.selectedTime);
-                                      setState(() {});
-                                    },
-                                    minuteInterval: MinuteInterval.ONE,
-                                    disableHour: false,
-                                    disableMinute: false,
-                                    minMinute: 0,
-                                    maxMinute: 59,
-                                    onChangeDateTime: (DateTime dateTime) {
-                                      setState(() {
-                                        model.selectedTime = dateTime;
-                                      });
-                                    },
-                                  ),
-                                );
-                              },
-                              child: InputFieldWidget(
-                                hint: "Start Time",
-                                enable: false,
-                                controller: timeCon,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
                             InputFieldWidget(
                               hint: "Event Location",
                               enable: true,
@@ -223,7 +147,6 @@ class _AddEventViewState extends State<AddEventView> {
                               InputFieldWidget(
                                 hint: "Price",
                                 controller: priceCon,
-                                keyboardType: TextInputType.number,
                               ),
                             SizedBox(
                               height: 16,

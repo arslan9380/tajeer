@@ -1,12 +1,12 @@
-import 'package:event_app/view/ui/calender/calander_view.dart';
-import 'package:event_app/view/ui/event/event_view.dart';
-import 'package:event_app/view/ui/user_home/user_home_viewmodel.dart';
-import 'package:event_app/view/ui/user_joined/user_joined_view.dart';
-import 'package:event_app/view/widgets/bottom_nav_bar.dart';
+import 'package:tajeer/view/ui/drawer/drawer_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
+import 'package:tajeer/view/ui/add_event/add_event_view.dart';
+import 'package:tajeer/view/ui/event/event_view.dart';
+import 'package:tajeer/view/ui/user_home/user_home_viewmodel.dart';
+import 'package:tajeer/view/widgets/bottom_nav_bar.dart';
 
 class UserHomeView extends StatelessWidget {
   @override
@@ -16,7 +16,7 @@ class UserHomeView extends StatelessWidget {
         builder: (context, model, child) => Scaffold(
               appBar: AppBar(
                 title: Text(
-                  "What's the Move",
+                  "TAJEER",
                   style: TextStyle(
                       color: Theme.of(context).primaryColorDark,
                       fontFamily: GoogleFonts.acme().fontFamily,
@@ -34,13 +34,14 @@ class UserHomeView extends StatelessWidget {
                           child: Icon(Icons.logout)))
                 ],
               ),
+              drawer: DrawerView(),
               body: IndexedStack(
                 index: model.currentIndex,
-                children: [EventView(), CalenderView()],
+                children: [EventView()],
               ),
               floatingActionButton: FloatingActionButton(
                 onPressed: () {
-                  Get.to(() => UserJoinedView());
+                  Get.to(() => AddEventView());
                 },
                 backgroundColor: Theme.of(context).primaryColor,
                 elevation: 0.0,
@@ -49,8 +50,6 @@ class UserHomeView extends StatelessWidget {
                   size: 23,
                 ),
               ),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerDocked,
               extendBody: true,
               resizeToAvoidBottomInset: false,
               bottomNavigationBar: BottomNavBar(

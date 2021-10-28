@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:event_app/app/locator.dart';
-import 'package:event_app/app/static_info.dart';
-import 'package:event_app/models/event_model.dart';
-import 'package:event_app/services/image_service.dart';
 import 'package:injectable/injectable.dart';
+import 'package:tajeer/app/locator.dart';
+import 'package:tajeer/app/static_info.dart';
+import 'package:tajeer/models/event_model.dart';
+
+import 'image_service.dart';
 
 @lazySingleton
 class EventService {

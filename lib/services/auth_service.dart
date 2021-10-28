@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:event_app/app/static_info.dart';
-import 'package:event_app/models/user_model.dart';
-import 'package:event_app/view/ui/login/login_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
+import 'package:tajeer/app/static_info.dart';
+import 'package:tajeer/models/user_model.dart';
+import 'package:tajeer/view/ui/login/login_view.dart';
 
 class AuthStatus {
   static const String ERROR_WEAK_PASSWORD = 'weak-password';

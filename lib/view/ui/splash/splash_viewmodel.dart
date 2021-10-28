@@ -1,6 +1,6 @@
-import 'package:event_app/view/ui/login/login_view.dart';
 import 'package:get/get.dart';
 import 'package:stacked/stacked.dart';
+import 'package:tajeer/view/ui/login/login_view.dart';
 
 class SplashViewModel extends BaseViewModel {
   initialise() async {

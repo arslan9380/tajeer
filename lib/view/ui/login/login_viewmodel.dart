@@ -1,11 +1,9 @@
-import 'package:event_app/app/locator.dart';
-import 'package:event_app/app/static_info.dart';
-import 'package:event_app/services/auth_service.dart';
-import 'package:event_app/services/common_ui_service.dart';
-import 'package:event_app/view/ui/admin_home/admin_home_view.dart';
-import 'package:event_app/view/ui/user_home/user_home_view.dart';
 import 'package:get/get.dart';
 import 'package:stacked/stacked.dart';
+import 'package:tajeer/app/locator.dart';
+import 'package:tajeer/services/auth_service.dart';
+import 'package:tajeer/services/common_ui_service.dart';
+import 'package:tajeer/view/ui/user_home/user_home_view.dart';
 
 class LoginViewModel extends BaseViewModel {
   AuthService authService = locator<AuthService>();
@@ -25,6 +23,8 @@ class LoginViewModel extends BaseViewModel {
   }
 
   Future<void> loginUser(String email, String password) async {
+    Get.offAll(() => UserHomeView());
+
     if (email.isEmpty || password.isEmpty) {
       commonUiService.showSnackBar("Please fill all the fields");
       return;
@@ -37,11 +37,7 @@ class LoginViewModel extends BaseViewModel {
     setLoading(false);
     print(result);
     if (result == "success") {
-      if (StaticInfo.userModel.userType == "admin") {
-        Get.offAll(() => AdminHomeView());
-      } else {
-        Get.offAll(() => UserHomeView());
-      }
+      Get.offAll(() => UserHomeView());
     } else {
       if (result == AuthStatus.ERROR_INVALID_EMAIL) {
         commonUiService.showSnackBar("Email address is invalid");

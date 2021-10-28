@@ -1,10 +1,10 @@
-import 'package:event_app/app/constants.dart';
-import 'package:event_app/view/ui/signup/signup_viewmodel.dart';
-import 'package:event_app/view/widgets/inputfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:stacked/stacked.dart';
+import 'package:tajeer/app/constants.dart';
+import 'package:tajeer/view/ui/signup/signup_viewmodel.dart';
+import 'package:tajeer/view/widgets/inputfield_widget.dart';
 
 class SignUpView extends StatefulWidget {
   @override
@@ -27,7 +27,6 @@ class _SignUpViewState extends State<SignUpView> {
           inAsyncCall: model.loading,
           child: Column(
             children: [
-              Image.asset("assets/top_image.png"),
               Expanded(
                 child: SingleChildScrollView(
                   physics: ScrollPhysics(parent: BouncingScrollPhysics()),
