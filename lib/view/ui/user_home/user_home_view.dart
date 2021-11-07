@@ -1,12 +1,17 @@
-import 'package:tajeer/view/ui/drawer/drawer_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
-import 'package:tajeer/view/ui/add_event/add_event_view.dart';
-import 'package:tajeer/view/ui/event/event_view.dart';
+import 'package:tajeer/view/ui/add_item/add_item.dart';
+import 'package:tajeer/view/ui/drawer/drawer_view.dart';
+import 'package:tajeer/view/ui/home/home_view.dart';
+import 'package:tajeer/view/ui/messages/message_view.dart';
+import 'package:tajeer/view/ui/profile/profile_view.dart';
 import 'package:tajeer/view/ui/user_home/user_home_viewmodel.dart';
+import 'package:tajeer/view/ui/wishlist/wishlist_view.dart';
 import 'package:tajeer/view/widgets/bottom_nav_bar.dart';
+
+GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
 class UserHomeView extends StatelessWidget {
   @override
@@ -14,7 +19,18 @@ class UserHomeView extends StatelessWidget {
     return ViewModelBuilder<UserHomeViewModel>.reactive(
         viewModelBuilder: () => UserHomeViewModel(),
         builder: (context, model, child) => Scaffold(
+              key: scaffoldKey,
               appBar: AppBar(
+                leading: InkWell(
+                  onTap: () => scaffoldKey.currentState.openDrawer(),
+                  child: Container(
+                    padding: EdgeInsets.all(15),
+                    child: Image.asset(
+                      "assets/menu.png",
+                      color: Color.fromRGBO(255, 255, 255, 1),
+                    ),
+                  ),
+                ),
                 title: Text(
                   "TAJEER",
                   style: TextStyle(
@@ -37,17 +53,24 @@ class UserHomeView extends StatelessWidget {
               drawer: DrawerView(),
               body: IndexedStack(
                 index: model.currentIndex,
-                children: [EventView()],
+                children: [
+                  HomeView(),
+                  MessageView(),
+                  WishlistView(),
+                  ProfileView(),
+                ],
               ),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerDocked,
               floatingActionButton: FloatingActionButton(
                 onPressed: () {
-                  Get.to(() => AddEventView());
+                  Get.to(() => AddItemView());
                 },
-                backgroundColor: Theme.of(context).primaryColor,
+                backgroundColor: Theme.of(context).primaryColorDark,
                 elevation: 0.0,
                 child: Icon(
-                  Icons.event_available,
-                  size: 23,
+                  Icons.add,
+                  size: 33,
                 ),
               ),
               extendBody: true,

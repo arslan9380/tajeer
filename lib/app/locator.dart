@@ -5,7 +5,7 @@ import 'package:tajeer/services/auth_service.dart';
 import 'package:tajeer/services/common_ui_service.dart';
 import 'package:tajeer/services/event_service.dart';
 import 'package:tajeer/services/image_service.dart';
-import 'package:tajeer/view/ui/event/event_viewmodel.dart';
+import 'package:tajeer/view/ui/home/home_viewmodel.dart';
 
 final locator = GetIt.instance;
 
@@ -16,5 +16,5 @@ void setupLocator() {
   locator.registerLazySingleton(() => AuthService());
   locator.registerLazySingleton(() => EventService());
   locator.registerLazySingleton(() => ImageService());
-  locator.registerSingleton<EventViewModel>(EventViewModel());
+  locator.registerSingleton<HomeViewModel>(HomeViewModel());
 }

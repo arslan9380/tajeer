@@ -17,6 +17,7 @@ class RectImage extends StatelessWidget {
         height: height,
         decoration: BoxDecoration(
           shape: BoxShape.rectangle,
+          border: Border.all(color: Theme.of(context).primaryColorDark),
           color: Colors.white,
           boxShadow: [
             BoxShadow(
@@ -38,6 +39,7 @@ class RectImage extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.white,
             shape: BoxShape.rectangle,
+            border: Border.all(color: Theme.of(context).primaryColorDark),
             boxShadow: [
               BoxShadow(
                 color: Color(0x4cd3d1d8),
@@ -56,6 +58,7 @@ class RectImage extends StatelessWidget {
         decoration: BoxDecoration(
             shape: BoxShape.rectangle,
             color: Colors.white,
+            border: Border.all(color: Theme.of(context).primaryColorDark),
             boxShadow: [
               BoxShadow(
                 color: Color(0x4cd3d1d8),
@@ -65,7 +68,7 @@ class RectImage extends StatelessWidget {
               ),
             ],
             image: DecorationImage(
-                fit: BoxFit.cover, image: AssetImage("assets/logo.png"))),
+                fit: BoxFit.fitWidth, image: AssetImage("assets/logo.png"))),
       ),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:get/get.dart';
 import 'package:stacked/stacked.dart';
-import 'package:tajeer/app/constants.dart';
 import 'package:tajeer/view/ui/splash/splash_viewmodel.dart';
 
 class SplashView extends StatelessWidget {
@@ -15,7 +15,7 @@ class SplashView extends StatelessWidget {
             // Image.asset("assets/top_image.png"),
             Spacer(),
             Container(
-                margin: EdgeInsets.symmetric(horizontal: hMargin),
+                margin: EdgeInsets.symmetric(horizontal: Get.width * 0.1),
                 child:
                     Hero(tag: "logo", child: Image.asset("assets/logo.png"))),
             Spacer(),

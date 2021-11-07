@@ -9,14 +9,38 @@ import 'package:tajeer/models/event_model.dart';
 import 'package:tajeer/services/common_ui_service.dart';
 import 'package:tajeer/services/event_service.dart';
 
-class AddEventViewModel extends BaseViewModel {
+class AddItemViewModel extends BaseViewModel {
   String eventImage = "";
   String eventType = "Free";
   DateTime selectedTime = DateTime.now();
+  TextEditingController catCon = TextEditingController();
+
   List<DateTime> pickedDate = [];
   CommonUiService commonUiService = locator<CommonUiService>();
   EventService eventService = locator<EventService>();
   bool loading = false;
+  List<String> itemCats = [
+    "Household",
+    "Electronics",
+    "Property",
+    "Vehicle",
+    "Others"
+  ];
+
+  String selectedCat = "";
+  bool isExpanded = false;
+
+  setExpanded() {
+    isExpanded = !isExpanded;
+    notifyListeners();
+  }
+
+  setEventType(String eventTyp) {
+    selectedCat = eventTyp;
+    isExpanded = !isExpanded;
+    catCon.text = selectedCat;
+    notifyListeners();
+  }
 
   setLoading(bool val) {
     loading = val;
@@ -67,11 +91,6 @@ class AddEventViewModel extends BaseViewModel {
             child: Text('Camera'))
       ],
     ));
-  }
-
-  void setEventType(value) {
-    eventType = value;
-    notifyListeners();
   }
 
   Future<void> createEvent(String title, String location, String description,

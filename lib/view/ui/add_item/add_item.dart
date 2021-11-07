@@ -6,31 +6,34 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:stacked/stacked.dart';
 import 'package:tajeer/app/constants.dart';
 import 'package:tajeer/view/widgets/description_field.dart';
+import 'package:tajeer/view/widgets/expand_option_widget.dart';
+import 'package:tajeer/view/widgets/expandable_box.dart';
 import 'package:tajeer/view/widgets/inputfield_widget.dart';
 
-import 'add_event_viewmodel.dart';
+import 'add_item_viewmodel.dart';
 
-class AddEventView extends StatefulWidget {
+class AddItemView extends StatefulWidget {
   @override
-  _AddEventViewState createState() => _AddEventViewState();
+  _AddItemViewState createState() => _AddItemViewState();
 }
 
-class _AddEventViewState extends State<AddEventView> {
+class _AddItemViewState extends State<AddItemView> {
   TextEditingController titleCon = TextEditingController();
   TextEditingController locationCon = TextEditingController();
   TextEditingController priceCon = TextEditingController();
   TextEditingController dateCon = TextEditingController();
   TextEditingController timeCon = TextEditingController();
   TextEditingController descriptionCon = TextEditingController();
+  TextEditingController rentCon = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<AddEventViewModel>.reactive(
-        viewModelBuilder: () => AddEventViewModel(),
+    return ViewModelBuilder<AddItemViewModel>.reactive(
+        viewModelBuilder: () => AddItemViewModel(),
         builder: (context, model, child) => Scaffold(
               appBar: AppBar(
                 title: Text(
-                  "ADD EVENT",
+                  "ADD ITEM FOR RENT",
                   style: TextStyle(color: Colors.white),
                 ),
                 centerTitle: true,
@@ -56,7 +59,7 @@ class _AddEventViewState extends State<AddEventView> {
                               : Center(
                                   child: Image.asset(
                                     "assets/image_placeholder.png",
-                                    color: Theme.of(context).primaryColorDark,
+                                    color: Theme.of(context).primaryColor,
                                   ),
                                 ),
                         ),
@@ -64,7 +67,7 @@ class _AddEventViewState extends State<AddEventView> {
                       Divider(
                         height: 2,
                         thickness: 3,
-                        color: Theme.of(context).primaryColorDark,
+                        color: Theme.of(context).primaryColor,
                       ),
                       Container(
                         margin: EdgeInsets.symmetric(
@@ -82,9 +85,75 @@ class _AddEventViewState extends State<AddEventView> {
                               height: 10,
                             ),
                             InputFieldWidget(
-                              hint: "Event Location",
+                              hint: "Location",
                               enable: true,
                               controller: locationCon,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            InputFieldWidget(
+                              hint: "Rent per day",
+                              enable: true,
+                              controller: locationCon,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                model.setExpanded();
+                              },
+                              child: InputFieldWidget(
+                                hint: "Select Category",
+                                enable: false,
+                                controller: model.catCon,
+                              ),
+                            ),
+                            Container(
+                              constraints: BoxConstraints(maxHeight: 200),
+                              margin: EdgeInsets.only(top: 4),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Color(0x26000000),
+                                    blurRadius: 16,
+                                    offset: Offset(0, 8),
+                                  ),
+                                ],
+                                color: Colors.white,
+                              ),
+                              child: ExpandedSection(
+                                expand: model.isExpanded,
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 4,
+                                    vertical: 8,
+                                  ),
+                                  child: Scrollbar(
+                                    isAlwaysShown: true,
+                                    thickness: 8,
+                                    child: ListView.builder(
+                                        itemCount: model.itemCats.length,
+                                        physics: BouncingScrollPhysics(),
+                                        shrinkWrap: true,
+                                        padding: EdgeInsets.only(right: 16),
+                                        itemBuilder: (_, index) {
+                                          return InkWell(
+                                            onTap: () {
+                                              model.setEventType(
+                                                  model.itemCats[index]);
+                                            },
+                                            child: ExpandOptionWidget(
+                                              title: model.itemCats[index],
+                                              selectedValue: model.selectedCat,
+                                            ),
+                                          );
+                                        }),
+                                  ),
+                                ),
+                              ),
                             ),
                             SizedBox(
                               height: 10,
@@ -93,9 +162,8 @@ class _AddEventViewState extends State<AddEventView> {
                               height: Get.height * 0.3,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12.5),
-                                border: Border.all(
-                                    width: 1.0,
-                                    color: Theme.of(context).primaryColorLight),
+                                border:
+                                    Border.all(width: 1.0, color: Colors.grey),
                               ),
                               child: RawScrollbar(
                                 thumbColor: Theme.of(context).primaryColor,
@@ -107,47 +175,6 @@ class _AddEventViewState extends State<AddEventView> {
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              height: 16,
-                            ),
-                            Container(
-                                width: Get.width,
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  "Event Type?",
-                                  style: TextStyle(
-                                      color: Theme.of(context).primaryColor,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Flexible(
-                                  child: RadioListTile(
-                                      value: "Free",
-                                      title: Text(
-                                        "Free",
-                                      ),
-                                      groupValue: model.eventType,
-                                      onChanged: model.setEventType),
-                                ),
-                                Flexible(
-                                  child: RadioListTile(
-                                      value: "Paid",
-                                      title: Text(
-                                        "Paid",
-                                      ),
-                                      groupValue: model.eventType,
-                                      onChanged: model.setEventType),
-                                ),
-                              ],
-                            ),
-                            if (model.eventType == "Paid")
-                              InputFieldWidget(
-                                hint: "Price",
-                                controller: priceCon,
-                              ),
                             SizedBox(
                               height: 16,
                             ),
@@ -168,7 +195,7 @@ class _AddEventViewState extends State<AddEventView> {
                                     borderRadius: BorderRadius.circular(27.5)),
                                 child: Center(
                                   child: Text(
-                                    "Create Event",
+                                    "Publish Item",
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 22),
                                   ),

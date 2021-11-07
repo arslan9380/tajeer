@@ -49,7 +49,7 @@ class _InputFieldWidgetState extends State<InputFieldWidget> {
     return TextField(
       focusNode: widget.focusNode ?? null,
       cursorColor: Theme.of(context).textSelectionTheme.cursorColor,
-      style: TextStyle(color: Theme.of(context).accentColor, fontSize: 14),
+      style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 14),
       maxLines: widget.maxLines == null ? 1 : widget.maxLines,
       onChanged: widget.onChange,
       enabled: widget.enable,
@@ -67,7 +67,7 @@ class _InputFieldWidgetState extends State<InputFieldWidget> {
         contentPadding: widget.showPadding ? EdgeInsets.only(left: 12) : null,
         hintStyle: TextStyle(
           fontSize: 14,
-          color: Theme.of(context).accentColor.withOpacity(0.5),
+          color: Colors.grey,
           fontWeight: FontWeight.w400,
         ),
         filled: true,
@@ -105,7 +105,7 @@ class _InputFieldWidgetState extends State<InputFieldWidget> {
                 },
                 child: Icon(
                   obscure ? Icons.visibility : Icons.visibility_off,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).primaryColor,
                   size: 23,
                 ),
               ),
@@ -116,7 +116,7 @@ class _InputFieldWidgetState extends State<InputFieldWidget> {
   OutlineInputBorder buildUnderlineInputBorder() {
     return OutlineInputBorder(
         borderSide: BorderSide(
-          color: Theme.of(context).primaryColorLight,
+          color: Colors.grey,
         ),
         borderRadius: BorderRadius.circular(27.5));
   }

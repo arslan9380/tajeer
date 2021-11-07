@@ -6,8 +6,22 @@ import 'package:tajeer/services/common_ui_service.dart';
 import 'package:tajeer/services/event_service.dart';
 
 @singleton
-class EventViewModel extends IndexTrackingViewModel with CommonUiService {
+class HomeViewModel extends IndexTrackingViewModel with CommonUiService {
   EventService eventService = locator<EventService>();
+  String selectedCat = "All";
+  List<String> itemCats = [
+    "All",
+    "Household",
+    "Electronics",
+    "Property",
+    "Vehicle",
+    "Others"
+  ];
+
+  setCat(String cat) {
+    selectedCat = cat;
+    notifyListeners();
+  }
 
   bool loading = true;
   List<EventModel> allEvents = [];

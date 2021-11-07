@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tajeer/view/widgets/drawer_item.dart';
 
 class DrawerView extends StatefulWidget {
   const DrawerView({Key key}) : super(key: key);
@@ -16,7 +17,7 @@ class _DrawerViewState extends State<DrawerView> {
         children: [
           Container(
               width: MediaQuery.of(context).size.width * 0.27,
-              color: Colors.red),
+              color: Theme.of(context).primaryColor),
           Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width * 0.06,
@@ -51,172 +52,47 @@ class _DrawerViewState extends State<DrawerView> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
-              // mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
-                Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                  InkWell(
-                    onTap: () {},
-                    child: Container(
-                      child: Padding(
-                          padding: EdgeInsets.all(
-                              MediaQuery.of(context).size.width * 0.01),
-                          child: Icon(
-                            Icons.person_pin,
-                            color: Colors.white,
-                          )),
-                      height: MediaQuery.of(context).size.width * 0.1,
-                      width: MediaQuery.of(context).size.width * 0.1,
-                      decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10.0),
-                            topRight: Radius.circular(10.0),
-                            bottomLeft: Radius.circular(10.0),
-                            bottomRight: Radius.circular(10.0),
-                          ),
-                          border: Border.all(color: Colors.white)),
-                    ),
+                InkWell(
+                  onTap: () {},
+                  child: DrawerItem(
+                    icon: Icons.person_pin,
+                    title: "Edit Profile",
                   ),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  InkWell(
-                    onTap: () {},
-                    child: Text(
-                      "Profile",
-                      style: TextStyle(
-                          fontFamily: 'Open Sans',
-                          fontSize: 12,
-                          color: Colors.red),
-                    ),
-                  )
-                ]),
+                ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
-                Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                  InkWell(
-                    onTap: () {},
-                    child: Container(
-                      child: Padding(
-                          padding: EdgeInsets.all(
-                              MediaQuery.of(context).size.width * 0.01),
-                          child: Icon(
-                            Icons.list_alt_outlined,
-                            color: Colors.white,
-                          )),
-                      height: MediaQuery.of(context).size.width * 0.1,
-                      width: MediaQuery.of(context).size.width * 0.1,
-                      decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10.0),
-                            topRight: Radius.circular(10.0),
-                            bottomLeft: Radius.circular(10.0),
-                            bottomRight: Radius.circular(10.0),
-                          ),
-                          border: Border.all(color: Colors.white)),
-                    ),
+                InkWell(
+                  onTap: () {},
+                  child: DrawerItem(
+                    icon: Icons.local_offer_outlined,
+                    title: "View Offers",
                   ),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  InkWell(
-                    onTap: () {},
-                    child: Text(
-                      "Bill Details",
-                      style: TextStyle(
-                          fontFamily: 'Open Sans',
-                          fontSize: 12,
-                          color: Colors.red),
-                    ),
-                  )
-                ]),
+                ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
-                Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                  InkWell(
-                    onTap: () {},
-                    child: Container(
-                      child: Padding(
-                          padding: EdgeInsets.all(
-                              MediaQuery.of(context).size.width * 0.01),
-                          child: Icon(
-                            Icons.chat,
-                            color: Colors.white,
-                          )),
-                      height: MediaQuery.of(context).size.width * 0.1,
-                      width: MediaQuery.of(context).size.width * 0.1,
-                      decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10.0),
-                            topRight: Radius.circular(10.0),
-                            bottomLeft: Radius.circular(10.0),
-                            bottomRight: Radius.circular(10.0),
-                          ),
-                          border: Border.all(color: Colors.white)),
-                    ),
+                InkWell(
+                  onTap: () {},
+                  child: DrawerItem(
+                    icon: Icons.list_alt_outlined,
+                    title: "View Past Items",
                   ),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  InkWell(
-                    onTap: () {},
-                    child: Text(
-                      "Messages",
-                      style: TextStyle(
-                          fontFamily: 'Open Sans',
-                          fontSize: 12,
-                          color: Colors.red),
-                    ),
-                  )
-                ]),
+                ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
-                Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                  InkWell(
-                    onTap: () {},
-                    child: Container(
-                      child: Padding(
-                          padding: EdgeInsets.all(
-                              MediaQuery.of(context).size.width * 0.01),
-                          child: Icon(
-                            Icons.notification_important,
-                            color: Colors.white,
-                          )),
-                      height: MediaQuery.of(context).size.width * 0.1,
-                      width: MediaQuery.of(context).size.width * 0.1,
-                      decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10.0),
-                            topRight: Radius.circular(10.0),
-                            bottomLeft: Radius.circular(10.0),
-                            bottomRight: Radius.circular(10.0),
-                          ),
-                          border: Border.all(color: Colors.white)),
-                    ),
+                InkWell(
+                  onTap: () {},
+                  child: DrawerItem(
+                    icon: Icons.supervised_user_circle_sharp,
+                    title: "View Past Renters",
                   ),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  InkWell(
-                    onTap: () {},
-                    child: Text(
-                      "Notifications",
-                      style: TextStyle(
-                          fontFamily: 'Open Sans',
-                          fontSize: 12,
-                          color: Colors.red),
-                    ),
-                  )
-                ]),
+                ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),

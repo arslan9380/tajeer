@@ -9,20 +9,21 @@ class BottomNavBar extends StatelessWidget {
   BottomNavBar({this.selectedIndex, this.onIndexChange});
 
   final List<IconData> _bottomBarIcons = [
-    Icons.explore,
-    Icons.calendar_today_outlined
+    Icons.home_outlined,
+    Icons.chat_outlined,
+    Icons.favorite_border,
+    Icons.person_outline,
   ];
-  final List<String> _iconsName = ["Events", "Calender"];
+  final List<String> _iconsName = ["Home", "Chat", "Wishlist", "Profile"];
 
   @override
   Widget build(BuildContext context) {
     return AnimatedBottomNavigationBar.builder(
         itemCount: _bottomBarIcons.length,
-        backgroundColor: Theme.of(context).primaryColorDark,
+        backgroundColor: Theme.of(context).primaryColor,
         tabBuilder: (int index, bool isActive) {
-          final color = isActive
-              ? Theme.of(context).primaryColor
-              : Theme.of(context).primaryColorLight;
+          final color =
+              isActive ? Theme.of(context).primaryColorDark : Colors.white;
           return Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,

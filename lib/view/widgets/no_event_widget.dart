@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 
 class NoEventWidget extends StatelessWidget {
   final bool isFromCompleted;
+  final String title;
 
-  NoEventWidget(this.isFromCompleted);
+  NoEventWidget(this.isFromCompleted, {this.title = "Sorry! No Item yet"});
 
   @override
   Widget build(BuildContext context) {
@@ -14,21 +15,19 @@ class NoEventWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       children: [
         SizedBox(
-          height: Get.height * 0.07,
+          height: Get.height * 0.12,
         ),
         Container(
             margin: EdgeInsets.symmetric(horizontal: Get.width * 0.1),
-            child: Image.asset(
-              "assets/no_event.png",
-            )),
+            child: Image.asset("assets/empty.jfif")),
         SizedBox(
           height: 10,
         ),
         Text(
-          isFromCompleted ? "No Completed Events" : "No Upcoming Events",
+          title,
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).primaryColor,
             fontSize: 24,
             fontFamily: "SF Pro Rounded",
             fontWeight: FontWeight.w500,

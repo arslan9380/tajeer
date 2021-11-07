@@ -4,11 +4,18 @@ import 'package:flutter/material.dart';
 class RoundImage extends StatelessWidget {
   final String imageUrl;
   final double radius;
+  final bool showBorder;
+  final Color borderColor;
+  final bool showShadow;
 
   RoundImage(
       {this.imageUrl =
-          'https://png.pngtree.com/png-vector/20200614/ourlarge/pngtree-businessman-user-avatar-character-vector-illustration-png-image_2242909.jpg',
-      this.radius = 65.0});
+          "https://listaka.com/wp-content/uploads/2015/06/Observe-people.jpg",
+      // 'https://png.pngtree.com/png-vector/20200614/ourlarge/pngtree-businessman-user-avatar-character-vector-illustration-png-image_2242909.jpg',
+      this.radius = 65.0,
+      this.showBorder = false,
+      this.borderColor,
+      this.showShadow = true});
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +28,20 @@ class RoundImage extends StatelessWidget {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: Theme.of(context).primaryColor,
-          border: Border.all(color: Theme.of(context).accentColor),
+          border: Border.all(
+              color: showBorder
+                  ? borderColor != null
+                      ? borderColor
+                      : Theme.of(context).accentColor
+                  : Colors.transparent),
           boxShadow: [
-            BoxShadow(
-              color: Color(0x4cd3d1d8),
-              blurRadius: 6,
-              spreadRadius: 1,
-              offset: Offset(0, 0),
-            ),
+            if (showShadow)
+              BoxShadow(
+                color: Color(0x4cd3d1d8),
+                blurRadius: 6,
+                spreadRadius: 1,
+                offset: Offset(0, 0),
+              ),
           ],
           image: DecorationImage(
             image: imageProvider,

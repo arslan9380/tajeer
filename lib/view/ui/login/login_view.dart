@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:stacked/stacked.dart';
 import 'package:tajeer/app/constants.dart';
@@ -36,7 +37,14 @@ class _LoginViewState extends State<LoginView> {
                           child: Column(
                             children: [
                               SizedBox(
-                                height: Get.height * 0.15,
+                                height: Get.height * 0.1,
+                              ),
+                              Container(
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: Get.width * 0.05),
+                                  child: Image.asset("assets/logo.png")),
+                              SizedBox(
+                                height: Get.height * 0.05,
                               ),
                               Container(
                                   alignment: Alignment.centerLeft,
@@ -44,7 +52,8 @@ class _LoginViewState extends State<LoginView> {
                                     'LOGIN',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
-                                      color: Theme.of(context).accentColor,
+                                      color: Theme.of(context).primaryColor,
+                                      fontWeight: FontWeight.w600,
                                       fontSize: 24,
                                     ),
                                   )),
@@ -119,7 +128,7 @@ class _LoginViewState extends State<LoginView> {
                                     'Don’t have an account?',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      color: Theme.of(context).accentColor,
+                                      color: Theme.of(context).primaryColor,
                                       fontSize: 14,
                                     ),
                                   ),
@@ -129,7 +138,11 @@ class _LoginViewState extends State<LoginView> {
                                       ' Register now',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        color: Theme.of(context).primaryColor,
+                                        color:
+                                            Theme.of(context).primaryColorDark,
+                                        fontWeight: FontWeight.w800,
+                                        fontFamily:
+                                            GoogleFonts.adamina().fontFamily,
                                         fontSize: 14,
                                       ),
                                     ),
