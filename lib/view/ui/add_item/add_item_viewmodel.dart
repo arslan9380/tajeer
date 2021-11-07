@@ -5,19 +5,16 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:stacked/stacked.dart';
 import 'package:tajeer/app/locator.dart';
-import 'package:tajeer/models/event_model.dart';
+import 'package:tajeer/app/static_info.dart';
+import 'package:tajeer/models/item_model.dart';
 import 'package:tajeer/services/common_ui_service.dart';
-import 'package:tajeer/services/event_service.dart';
+import 'package:tajeer/services/item_service.dart';
 
 class AddItemViewModel extends BaseViewModel {
-  String eventImage = "";
-  String eventType = "Free";
-  DateTime selectedTime = DateTime.now();
+  String itemImage = "";
   TextEditingController catCon = TextEditingController();
-
-  List<DateTime> pickedDate = [];
   CommonUiService commonUiService = locator<CommonUiService>();
-  EventService eventService = locator<EventService>();
+  ItemService itemService = locator<ItemService>();
   bool loading = false;
   List<String> itemCats = [
     "Household",
@@ -49,82 +46,54 @@ class AddItemViewModel extends BaseViewModel {
 
   Future<void> pickImage() async {
     var picked;
-    await Get.dialog(AlertDialog(
-      title: Text('Pick one source for image'),
-      actions: [
-        FlatButton(
-            onPressed: () async {
-              Get.back();
-              picked =
-                  await ImagePicker().getImage(source: ImageSource.gallery);
-              if (picked != null) {
-                var cropped = await ImageCropper.cropImage(
-                  sourcePath: picked.path,
-                  compressQuality: 100,
-                  cropStyle: CropStyle.rectangle,
-                  aspectRatio: CropAspectRatio(ratioX: 3, ratioY: 2),
-                );
-                if (cropped != null) {
-                  eventImage = cropped.path;
-                  notifyListeners();
-                }
-              }
-            },
-            child: Text('Gallery')),
-        FlatButton(
-            onPressed: () async {
-              Get.back();
-              picked = await ImagePicker().getImage(source: ImageSource.camera);
-              if (picked != null) {
-                var cropped = await ImageCropper.cropImage(
-                  sourcePath: picked.path,
-                  compressQuality: 100,
-                  cropStyle: CropStyle.rectangle,
-                  aspectRatio: CropAspectRatio(ratioX: 3, ratioY: 2),
-                );
-                if (cropped != null) {
-                  eventImage = cropped.path;
-                  notifyListeners();
-                }
-              }
-            },
-            child: Text('Camera'))
-      ],
-    ));
+    picked = await ImagePicker().getImage(source: ImageSource.gallery);
+    if (picked != null) {
+      var cropped = await ImageCropper.cropImage(
+        sourcePath: picked.path,
+        compressQuality: 100,
+        cropStyle: CropStyle.rectangle,
+        aspectRatio: CropAspectRatio(ratioX: 3, ratioY: 2),
+      );
+      if (cropped != null) {
+        itemImage = cropped.path;
+        notifyListeners();
+      }
+    }
   }
 
-  Future<void> createEvent(String title, String location, String description,
-      String price, String timeCon) async {
-    print(title + location + price + timeCon);
+  Future<void> addItem(
+    String title,
+    String location,
+    String rentPerDay,
+    String description,
+  ) async {
     if (title.isEmpty ||
         location.isEmpty ||
         description.isEmpty ||
-        timeCon.isEmpty ||
-        pickedDate.length == 0 ||
-        eventImage.isEmpty ||
-        (eventType == "Paid" && price.isEmpty)) {
+        rentPerDay.isEmpty ||
+        itemImage.isEmpty ||
+        selectedCat.isEmpty) {
       commonUiService.showSnackBar("Please fill all the fields");
       return;
     }
 
-    EventModel eventModel = EventModel(
-      image: eventImage,
-      id: DateTime.now().millisecondsSinceEpoch.toString(),
-      title: title,
-      description: description,
-      startDate: Timestamp.fromDate(pickedDate[0]),
-      isPaid: eventType == "Paid" ? true : false,
-      location: location,
-      price: price,
-      startTime: Timestamp.fromDate(selectedTime),
-    );
-
-    if (pickedDate.length == 2) {
-      eventModel.endDate = Timestamp.fromDate(pickedDate[1]);
-    }
+    ItemModel itemModel = ItemModel(
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
+        image: itemImage,
+        title: title,
+        category: selectedCat,
+        rentPerDay: rentPerDay,
+        location: location,
+        description: description,
+        addedById: StaticInfo.userModel.id,
+        addedByName:
+            StaticInfo.userModel.fistName + " " + StaticInfo.userModel.lastName,
+        addedByPhoto: StaticInfo.userModel.image,
+        addedTime: Timestamp.now(),
+        isPublished: true);
 
     setLoading(true);
-    var result = await eventService.addEvent(eventModel);
+    var result = await itemService.addItem(itemModel);
     setLoading(false);
     if (result != false) {
       Get.back(result: result);

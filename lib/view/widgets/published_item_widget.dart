@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'item_widget.dart';
-import 'no_event_widget.dart';
+import 'package:tajeer/view/widgets/item_widget.dart';
+import 'package:tajeer/view/widgets/no_event_widget.dart';
 
 class PublishedItemWidget extends StatefulWidget {
   final int length;

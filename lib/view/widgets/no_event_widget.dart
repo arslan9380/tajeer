@@ -12,7 +12,6 @@ class NoEventWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
-      mainAxisSize: MainAxisSize.max,
       children: [
         SizedBox(
           height: Get.height * 0.12,

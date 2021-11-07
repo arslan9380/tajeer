@@ -17,8 +17,9 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  TextEditingController emailCon = TextEditingController();
-  TextEditingController passwordCon = TextEditingController();
+  TextEditingController emailCon =
+      TextEditingController(text: "test@gmail.com");
+  TextEditingController passwordCon = TextEditingController(text: "12345678");
 
   @override
   Widget build(BuildContext context) {

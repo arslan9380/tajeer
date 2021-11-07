@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:tajeer/models/chat.dart';
 import 'package:tajeer/view/widgets/round_image.dart';
+import 'package:timeago_flutter/timeago_flutter.dart';
 
 class MessageWidget extends StatelessWidget {
+  final Chat chat;
+  final Function onDelete;
+
+  MessageWidget({this.chat, this.onDelete});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,6 +24,7 @@ class MessageWidget extends StatelessWidget {
             caption: 'Delete',
             color: Colors.red,
             icon: Icons.delete,
+            onTap: onDelete,
           )
         ],
         child: Container(
@@ -38,6 +46,7 @@ class MessageWidget extends StatelessWidget {
             children: [
               RoundImage(
                 radius: 50,
+                imageUrl: chat.imageUrl,
               ),
               SizedBox(
                 width: 12,
@@ -47,7 +56,7 @@ class MessageWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Jhonny Done",
+                    chat.name,
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontSize: 18,
@@ -55,7 +64,9 @@ class MessageWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "Let's catch up!",
+                    chat.lastMsg == ""
+                        ? "This person sent you an image"
+                        : chat.lastMsg,
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontSize: 12,
@@ -65,12 +76,18 @@ class MessageWidget extends StatelessWidget {
                 ],
               ),
               Spacer(),
-              Text(
-                "10:00 AM",
-                style: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                  fontSize: 14,
+              Timeago(
+                builder: (_, value) => Text(
+                  value == "now" ? value : value + " ago",
+                  textAlign: TextAlign.end,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Theme.of(context).primaryColor,
+                  ),
                 ),
+                date: chat.dateTime.toDate(),
+                locale: "en_short",
+                allowFromNow: true,
               )
             ],
           ),

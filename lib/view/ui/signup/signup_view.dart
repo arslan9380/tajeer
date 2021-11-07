@@ -71,7 +71,7 @@ class _SignUpViewState extends State<SignUpView> {
                           InputFieldWidget(
                             hint: "Last Name",
                             prefixIcon: Icons.person,
-                            controller: firstNameCon,
+                            controller: lastNameCon,
                           ),
                           SizedBox(
                             height: 10,
@@ -112,8 +112,13 @@ class _SignUpViewState extends State<SignUpView> {
                           ),
                           InkWell(
                             onTap: () {
-                              model.signUpUser(firstNameCon.text, emailCon.text,
-                                  phoneCon.text, passwordCon.text);
+                              model.signUpUser(
+                                  firstNameCon.text,
+                                  lastNameCon.text,
+                                  emailCon.text,
+                                  phoneCon.text,
+                                  passwordCon.text,
+                                  confirmPasswordCon.text);
                             },
                             child: Container(
                               width: Get.width * 0.45,

@@ -20,11 +20,8 @@ class AddItemView extends StatefulWidget {
 class _AddItemViewState extends State<AddItemView> {
   TextEditingController titleCon = TextEditingController();
   TextEditingController locationCon = TextEditingController();
-  TextEditingController priceCon = TextEditingController();
-  TextEditingController dateCon = TextEditingController();
-  TextEditingController timeCon = TextEditingController();
-  TextEditingController descriptionCon = TextEditingController();
   TextEditingController rentCon = TextEditingController();
+  TextEditingController descriptionCon = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +48,9 @@ class _AddItemViewState extends State<AddItemView> {
                         child: Container(
                           height: Get.width * 0.7,
                           width: Get.width,
-                          child: model.eventImage != ""
+                          child: model.itemImage != ""
                               ? Image.file(
-                                  File(model.eventImage),
+                                  File(model.itemImage),
                                   fit: BoxFit.cover,
                                 )
                               : Center(
@@ -95,7 +92,7 @@ class _AddItemViewState extends State<AddItemView> {
                             InputFieldWidget(
                               hint: "Rent per day",
                               enable: true,
-                              controller: locationCon,
+                              controller: rentCon,
                             ),
                             SizedBox(
                               height: 10,
@@ -180,12 +177,8 @@ class _AddItemViewState extends State<AddItemView> {
                             ),
                             InkWell(
                               onTap: () {
-                                model.createEvent(
-                                    titleCon.text,
-                                    locationCon.text,
-                                    descriptionCon.text,
-                                    priceCon.text,
-                                    timeCon.text);
+                                model.addItem(titleCon.text, locationCon.text,
+                                    rentCon.text, descriptionCon.text);
                               },
                               child: Container(
                                 width: Get.width * 0.7,

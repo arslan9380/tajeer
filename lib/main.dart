@@ -13,6 +13,12 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
+///-------------------------------------------------
+///   MyWhatsapp +923039380800
+///   My email : mian.arslan9380@gmail.com
+///   Send me your email so i can add you on firebase
+///   -----------------------------------------------
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

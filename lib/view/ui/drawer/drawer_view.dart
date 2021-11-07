@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tajeer/view/ui/edit_profile/edit_profile_view.dart';
 import 'package:tajeer/view/widgets/drawer_item.dart';
 
 class DrawerView extends StatefulWidget {
@@ -57,7 +59,9 @@ class _DrawerViewState extends State<DrawerView> {
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => EditProfileView());
+                  },
                   child: DrawerItem(
                     icon: Icons.person_pin,
                     title: "Edit Profile",

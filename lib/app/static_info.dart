@@ -1,5 +1,5 @@
 import 'package:tajeer/models/user_model.dart';
 
 class StaticInfo {
-  static UserModel userModel = UserModel(userType: "");
+  static UserModel userModel = UserModel();
 }

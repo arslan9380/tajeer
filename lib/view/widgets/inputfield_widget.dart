@@ -15,6 +15,7 @@ class InputFieldWidget extends StatefulWidget {
   final Function onChange;
   final bool isSvg;
   final bool showPadding;
+  final String label;
 
   InputFieldWidget(
       {this.focusNode,
@@ -29,7 +30,8 @@ class InputFieldWidget extends StatefulWidget {
       this.maxLines,
       this.onChange,
       this.isSvg = false,
-      this.showPadding = false});
+      this.showPadding = false,
+      this.label});
 
   @override
   _InputFieldWidgetState createState() => _InputFieldWidgetState();
@@ -64,6 +66,7 @@ class _InputFieldWidgetState extends State<InputFieldWidget> {
       obscureText: widget.obscure ? obscure : widget.obscure,
       decoration: InputDecoration(
         hintText: widget.hint,
+        labelText: widget.label,
         contentPadding: widget.showPadding ? EdgeInsets.only(left: 12) : null,
         hintStyle: TextStyle(
           fontSize: 14,

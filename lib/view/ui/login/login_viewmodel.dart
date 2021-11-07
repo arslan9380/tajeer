@@ -23,8 +23,6 @@ class LoginViewModel extends BaseViewModel {
   }
 
   Future<void> loginUser(String email, String password) async {
-    Get.offAll(() => UserHomeView());
-
     if (email.isEmpty || password.isEmpty) {
       commonUiService.showSnackBar("Please fill all the fields");
       return;

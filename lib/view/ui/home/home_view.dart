@@ -83,8 +83,10 @@ class _HomeViewState extends State<HomeView> {
                       SizedBox(
                         height: 20,
                       ),
-                      model.upcomingFiltered.length == -1
-                          ? NoEventWidget(false)
+                      model.filteredItems.length == 0
+                          ? Expanded(
+                              child: SingleChildScrollView(
+                                  child: NoEventWidget(false)))
                           : Expanded(
                               child: RawScrollbar(
                                 thumbColor: Theme.of(context).primaryColor,
@@ -94,13 +96,17 @@ class _HomeViewState extends State<HomeView> {
                                   controller: _itemController,
                                   physics: BouncingScrollPhysics(),
                                   child: ListView.builder(
-                                      itemCount: 5,
+                                      itemCount: model.filteredItems.length,
                                       physics: NeverScrollableScrollPhysics(),
                                       shrinkWrap: true,
                                       padding: EdgeInsets.all(5),
                                       itemBuilder: (_, index) {
                                         return InkWell(
-                                            onTap: () {}, child: ItemWidget());
+                                            onTap: () {},
+                                            child: ItemWidget(
+                                              itemModel:
+                                                  model.filteredItems[index],
+                                            ));
                                       }),
                                 ),
                               ),

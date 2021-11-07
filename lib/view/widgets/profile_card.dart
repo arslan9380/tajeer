@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tajeer/view/ui/chat/chat_view.dart';
+import 'package:tajeer/models/user_model.dart';
 import 'package:tajeer/view/widgets/round_image.dart';
 
 class ProfileCard extends StatelessWidget {
+  final UserModel userModel;
+
+  ProfileCard({this.userModel});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,25 +26,16 @@ class ProfileCard extends StatelessWidget {
               color: Colors.white,
               child: Column(
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(() => ChatView());
-                    },
-                    child: Container(
-                        width: Get.width,
-                        alignment: Alignment.topRight,
-                        margin: EdgeInsets.only(top: 16, right: 16),
-                        child: Icon(
-                          Icons.chat_outlined,
-                          size: 28,
-                          color: Theme.of(context).primaryColorDark,
-                        )),
+                  Container(
+                    width: Get.width,
+                    alignment: Alignment.topRight,
+                    margin: EdgeInsets.only(top: 16, right: 16),
                   ),
                   SizedBox(
                     height: 50,
                   ),
                   Text(
-                    'Shafayet Abu Monon',
+                    userModel.fistName + " " + userModel.lastName,
                     style: TextStyle(
                         color: Color.fromRGBO(51, 51, 51, 1),
                         fontSize: 16,
@@ -50,7 +45,7 @@ class ProfileCard extends StatelessWidget {
                     height: 4,
                   ),
                   Text(
-                    '+923039380800',
+                    userModel.phone,
                     style: TextStyle(
                       color: Color.fromRGBO(114, 112, 112, 1),
                       fontSize: 12,
@@ -60,7 +55,7 @@ class ProfileCard extends StatelessWidget {
                     height: 4,
                   ),
                   Text(
-                    'johnDeo@gmail.com',
+                    userModel.email,
                     style: TextStyle(
                       color: Color.fromRGBO(114, 112, 112, 1),
                       fontSize: 12,
@@ -206,7 +201,9 @@ class ProfileCard extends StatelessWidget {
                   shape: BoxShape.circle,
                   border: Border.all(
                       color: Theme.of(context).primaryColor, width: 4)),
-              child: RoundImage(),
+              child: RoundImage(
+                imageUrl: userModel.image,
+              ),
             ),
           ),
         ],
