@@ -5,6 +5,8 @@ import 'package:tajeer/services/auth_service.dart';
 import 'package:tajeer/services/common_ui_service.dart';
 import 'package:tajeer/services/image_service.dart';
 import 'package:tajeer/services/item_service.dart';
+import 'package:tajeer/services/offer_service.dart';
+import 'package:tajeer/services/rating_service.dart';
 import 'package:tajeer/services/wishlist_service.dart';
 import 'package:tajeer/view/ui/home/home_viewmodel.dart';
 import 'package:tajeer/view/ui/wishlist/wishlist_viewmodel.dart';
@@ -19,6 +21,8 @@ void setupLocator() {
   locator.registerLazySingleton(() => ItemService());
   locator.registerLazySingleton(() => ImageService());
   locator.registerLazySingleton(() => WishlistService());
+  locator.registerLazySingleton(() => OfferService());
+  locator.registerLazySingleton(() => RatingService());
 
   locator.registerSingleton<HomeViewModel>(HomeViewModel());
   locator.registerSingleton<WishlistViewModel>(WishlistViewModel());

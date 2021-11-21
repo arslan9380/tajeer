@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:tajeer/models/user_model.dart';
 import 'package:tajeer/view/widgets/round_image.dart';
@@ -82,108 +83,124 @@ class ProfileCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Column(
-                        children: [
-                          Text(
-                            'Published',
-                            style: TextStyle(
-                                color: Color.fromRGBO(114, 112, 112, 1),
-                                fontSize: 14,
-                                height: 1.5 /*PERCENT not supported*/
-                                ),
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                height: 24,
-                                width: 24,
-                                child: Image.asset(
-                                  "assets/likes_icon.png",
-                                ),
-                              ),
-                              SizedBox(
-                                width: 4,
-                              ),
-                              Text(
-                                '1.5k',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
-                                    fontSize: 14,
-                                    height: 1.5),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            'Hides',
-                            style: TextStyle(
-                              color: Color.fromRGBO(114, 112, 112, 1),
-                              fontSize: 14,
-                            ),
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                height: 24,
-                                width: 24,
-                                child: Image.asset(
-                                  "assets/followers_icon.png",
-                                ),
-                              ),
-                              SizedBox(
-                                width: 4,
-                              ),
-                              Text(
-                                '0.5k',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
-                                    fontSize: 14,
-                                    height: 1.5),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            'Rating',
-                            style: TextStyle(
-                              color: Color.fromRGBO(114, 112, 112, 1),
-                              fontSize: 14,
-                            ),
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                height: 24,
-                                width: 24,
-                                child: Image.asset(
-                                  "assets/star.png",
-                                ),
-                              ),
-                              SizedBox(
-                                width: 4,
-                              ),
-                              Text(
-                                '4.8',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
-                                    fontSize: 14,
-                                    height: 1.5),
-                              )
-                            ],
-                          )
-                        ],
+                      // Column(
+                      //   children: [
+                      //     Text(
+                      //       'Published',
+                      //       style: TextStyle(
+                      //           color: Color.fromRGBO(114, 112, 112, 1),
+                      //           fontSize: 14,
+                      //           height: 1.5 /*PERCENT not supported*/
+                      //           ),
+                      //     ),
+                      //     Row(
+                      //       crossAxisAlignment: CrossAxisAlignment.center,
+                      //       children: [
+                      //         Container(
+                      //           height: 24,
+                      //           width: 24,
+                      //           child: Image.asset(
+                      //             "assets/likes_icon.png",
+                      //           ),
+                      //         ),
+                      //         SizedBox(
+                      //           width: 4,
+                      //         ),
+                      //         Text(
+                      //           '1.5k',
+                      //           textAlign: TextAlign.left,
+                      //           style: TextStyle(
+                      //               color: Theme.of(context).primaryColor,
+                      //               fontSize: 14,
+                      //               height: 1.5),
+                      //         )
+                      //       ],
+                      //     )
+                      //   ],
+                      // ),
+                      // Column(
+                      //   children: [
+                      //     Text(
+                      //       'Hides',
+                      //       style: TextStyle(
+                      //         color: Color.fromRGBO(114, 112, 112, 1),
+                      //         fontSize: 14,
+                      //       ),
+                      //     ),
+                      //     Row(
+                      //       crossAxisAlignment: CrossAxisAlignment.center,
+                      //       children: [
+                      //         Container(
+                      //           height: 24,
+                      //           width: 24,
+                      //           child: Image.asset(
+                      //             "assets/followers_icon.png",
+                      //           ),
+                      //         ),
+                      //         SizedBox(
+                      //           width: 4,
+                      //         ),
+                      //         Text(
+                      //           '0.5k',
+                      //           textAlign: TextAlign.left,
+                      //           style: TextStyle(
+                      //               color: Theme.of(context).primaryColor,
+                      //               fontSize: 14,
+                      //               height: 1.5),
+                      //         )
+                      //       ],
+                      //     )
+                      //   ],
+                      // ),
+                      // Column(
+                      //   children: [
+                      //     Text(
+                      //       'Rating',
+                      //       style: TextStyle(
+                      //         color: Color.fromRGBO(114, 112, 112, 1),
+                      //         fontSize: 14,
+                      //       ),
+                      //     ),
+                      //     Row(
+                      //       crossAxisAlignment: CrossAxisAlignment.center,
+                      //       children: [
+                      //         Container(
+                      //           height: 24,
+                      //           width: 24,
+                      //           child: Image.asset(
+                      //             "assets/star.png",
+                      //           ),
+                      //         ),
+                      //         SizedBox(
+                      //           width: 4,
+                      //         ),
+                      //         Text(
+                      //           '4.8',
+                      //           textAlign: TextAlign.left,
+                      //           style: TextStyle(
+                      //               color: Theme.of(context).primaryColor,
+                      //               fontSize: 14,
+                      //               height: 1.5),
+                      //         )
+                      //       ],
+                      //     )
+                      //   ],
+                      // )
+                      RatingBar.builder(
+                        initialRating: userModel.rating == null
+                            ? 0
+                            : double.parse(userModel.rating),
+                        minRating: 1,
+                        glow: true,
+                        ignoreGestures: true,
+                        direction: Axis.horizontal,
+                        allowHalfRating: true,
+                        itemCount: 5,
+                        itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                        itemBuilder: (context, _) => Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                        ),
                       )
                     ],
                   )

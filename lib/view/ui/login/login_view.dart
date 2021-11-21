@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:stacked/stacked.dart';
 import 'package:tajeer/app/constants.dart';
+import 'package:tajeer/view/ui/forgot_password/forgot_view.dart';
 import 'package:tajeer/view/ui/signup/signup_view.dart';
 import 'package:tajeer/view/widgets/filled_button.dart';
 import 'package:tajeer/view/widgets/inputfield_widget.dart';
@@ -107,6 +108,17 @@ class _LoginViewState extends State<LoginView> {
                               //     ),
                               //   ],
                               // ),
+                              SizedBox(
+                                height: 6,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Get.to(() => ForgotView());
+                                },
+                                child: Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Text("Forgot Password?")),
+                              ),
                               SizedBox(
                                 height: Get.height * 0.04,
                               ),

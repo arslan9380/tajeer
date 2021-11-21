@@ -12,14 +12,18 @@ class ItemService {
 
   Future addItem(ItemModel itemModel) async {
     try {
-      String url = await imageService.saveFiles(itemModel.image, "Images");
-      if (url == null) return;
-      itemModel.image = url;
+      if (!itemModel.image.contains("http")) {
+        String url = await imageService.saveFiles(itemModel.image, "Images");
+        if (url == null) return;
+        itemModel.image = url;
+      }
+
+      print(itemModel.isPublished);
       await FirebaseFirestore.instance
           .collection(_itemKey)
           .doc(itemModel.id)
           .set(itemModel.toMap(), SetOptions(merge: true));
-      return ItemModel;
+      return itemModel;
     } catch (e) {
       print(e);
       return false;

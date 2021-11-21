@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:tajeer/models/chat.dart';
@@ -63,10 +64,11 @@ class MessageWidget extends StatelessWidget {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  Text(
-                    chat.lastMsg == ""
-                        ? "This person sent you an image"
-                        : chat.lastMsg,
+                  AutoSizeText(
+                    chat.lastMsg == "" ? "Image sent" : chat.lastMsg,
+                    presetFontSizes: [12, 10],
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontSize: 12,

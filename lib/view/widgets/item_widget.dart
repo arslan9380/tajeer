@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tajeer/models/item_model.dart';
 import 'package:tajeer/view/ui/item_detail/item_detail.dart';
+import 'package:tajeer/view/ui/profile/profile_viewmodel.dart';
 import 'package:tajeer/view/widgets/rect_image.dart';
 
 class ItemWidget extends StatelessWidget {
@@ -11,13 +12,15 @@ class ItemWidget extends StatelessWidget {
   final bool isFromHide;
   final ItemModel itemModel;
   final Function onFavouriteTap;
+  final ProfileViewModel model;
 
   ItemWidget(
       {this.isFavourite = false,
       this.isFromPublish = false,
       this.isFromHide = false,
       this.itemModel,
-      this.onFavouriteTap});
+      this.onFavouriteTap,
+      this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -88,15 +91,13 @@ class ItemWidget extends StatelessWidget {
                         PopupMenuButton(
                           onSelected: (String value) async {
                             if (value == "Delete") {
+                              model.deleteItem(itemModel);
                             } else if (value == "Edit") {
+                              model.editItem(itemModel);
                             } else if (value == "Hide") {
-                              Get.snackbar(
-                                  "Submitted!", "Your request is approved",
-                                  snackPosition: SnackPosition.BOTTOM,
-                                  backgroundColor:
-                                      Theme.of(context).primaryColor,
-                                  colorText: Theme.of(context).primaryColorDark,
-                                  duration: Duration(seconds: 1));
+                              model.hideItem(itemModel);
+                            } else if (value == "Publish") {
+                              model.publishItem(itemModel);
                             }
                           },
                           itemBuilder: (BuildContext context) =>
@@ -106,7 +107,7 @@ class ItemWidget extends StatelessWidget {
                               child: Text('Edit'),
                             ),
                             PopupMenuItem<String>(
-                              value: 'Hide',
+                              value: isFromHide ? "Publish" : 'Hide',
                               child: Text(isFromHide ? "Publish" : 'Hide'),
                             ),
                             const PopupMenuItem<String>(

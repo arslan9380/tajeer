@@ -16,7 +16,6 @@ Future<void> main() async {
 ///-------------------------------------------------
 ///   MyWhatsapp +923039380800
 ///   My email : mian.arslan9380@gmail.com
-///   Send me your email so i can add you on firebase
 ///   -----------------------------------------------
 
 class MyApp extends StatelessWidget {

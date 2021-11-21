@@ -57,6 +57,7 @@ class ItemDetail extends StatelessWidget {
                                     false,
                                     "",
                                     itemModel.addedByPhoto),
+                                item: itemModel,
                               ));
                         } else if (value == "profile") {
                           Get.to(() => ProfileView(

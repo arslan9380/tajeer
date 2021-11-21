@@ -16,6 +16,7 @@ class InputFieldWidget extends StatefulWidget {
   final bool isSvg;
   final bool showPadding;
   final String label;
+  final bool showDropArrow;
 
   InputFieldWidget(
       {this.focusNode,
@@ -31,7 +32,8 @@ class InputFieldWidget extends StatefulWidget {
       this.onChange,
       this.isSvg = false,
       this.showPadding = false,
-      this.label});
+      this.label,
+      this.showDropArrow = false});
 
   @override
   _InputFieldWidgetState createState() => _InputFieldWidgetState();
@@ -98,20 +100,22 @@ class _InputFieldWidgetState extends State<InputFieldWidget> {
                     margin: EdgeInsets.symmetric(horizontal: 10),
                     child: Image.asset(widget.prefixImage))
                 : null,
-        suffixIcon: !widget.obscure
-            ? null
-            : GestureDetector(
-                onTap: () {
-                  setState(() {
-                    obscure = !obscure;
-                  });
-                },
-                child: Icon(
-                  obscure ? Icons.visibility : Icons.visibility_off,
-                  color: Theme.of(context).primaryColor,
-                  size: 23,
-                ),
-              ),
+        suffixIcon: widget.showDropArrow
+            ? Icon(Icons.arrow_drop_down_outlined)
+            : !widget.obscure
+                ? null
+                : GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        obscure = !obscure;
+                      });
+                    },
+                    child: Icon(
+                      obscure ? Icons.visibility : Icons.visibility_off,
+                      color: Theme.of(context).primaryColor,
+                      size: 23,
+                    ),
+                  ),
       ),
     );
   }

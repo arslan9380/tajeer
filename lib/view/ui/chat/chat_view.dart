@@ -7,8 +7,10 @@ import 'package:stacked/stacked.dart';
 import 'package:tajeer/app/constants.dart';
 import 'package:tajeer/app/static_info.dart';
 import 'package:tajeer/models/chat.dart';
+import 'package:tajeer/models/item_model.dart';
 import 'package:tajeer/models/message.dart';
 import 'package:tajeer/services/message_helper.dart';
+import 'package:tajeer/view/ui/send_offer/send_offer.dart';
 import 'package:tajeer/view/widgets/icon_button.dart';
 import 'package:tajeer/view/widgets/msg_receive_widget.dart';
 import 'package:tajeer/view/widgets/msg_send_widget.dart';
@@ -17,8 +19,9 @@ import 'chat_viewmodel.dart';
 
 class ChatView extends StatefulWidget {
   final Chat chat;
+  final ItemModel item;
 
-  ChatView({this.chat});
+  ChatView({this.chat, this.item});
 
   @override
   _ChatViewState createState() => _ChatViewState();
@@ -79,6 +82,7 @@ class _ChatViewState extends State<ChatView> {
                 children: [
                   Expanded(
                     child: SingleChildScrollView(
+                      reverse: true,
                       physics: BouncingScrollPhysics(),
                       child: Container(
                         margin: EdgeInsets.symmetric(horizontal: hMargin),
@@ -140,6 +144,21 @@ class _ChatViewState extends State<ChatView> {
                                           vertical: 5, horizontal: 10),
                                       border: InputBorder.none,
                                     ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 2,
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Get.to(() => SendOffer(
+                                          chatModel: widget.chat,
+                                        ));
+                                  },
+                                  child: Icon(
+                                    Icons.offline_bolt_outlined,
+                                    color: Theme.of(context).primaryColor,
+                                    size: 30,
                                   ),
                                 ),
                                 SizedBox(

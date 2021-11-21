@@ -61,25 +61,29 @@ class AddItemViewModel extends BaseViewModel {
     }
   }
 
-  Future<void> addItem(
-    String title,
-    String location,
-    String rentPerDay,
-    String description,
-  ) async {
+  Future<void> addItem(String title, String location, String rentPerDay,
+      String description, ItemModel originalItem) async {
+    if (originalItem != null) {
+      selectedCat = originalItem.category;
+    }
     if (title.isEmpty ||
         location.isEmpty ||
         description.isEmpty ||
         rentPerDay.isEmpty ||
-        itemImage.isEmpty ||
         selectedCat.isEmpty) {
       commonUiService.showSnackBar("Please fill all the fields");
       return;
     }
+    if (originalItem == null) {
+      if (itemImage.isEmpty) {
+        commonUiService.showSnackBar("Please add Image");
+      }
+    }
 
     ItemModel itemModel = ItemModel(
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
-        image: itemImage,
+        id: originalItem?.id ??
+            DateTime.now().millisecondsSinceEpoch.toString(),
+        image: itemImage ?? originalItem.image,
         title: title,
         category: selectedCat,
         rentPerDay: rentPerDay,
@@ -96,8 +100,13 @@ class AddItemViewModel extends BaseViewModel {
     var result = await itemService.addItem(itemModel);
     setLoading(false);
     if (result != false) {
-      Get.back(result: result);
-      commonUiService.showSnackBar("Event Added Successfully");
+      ItemModel item = result;
+      Get.back(result: item);
+      if (itemModel != null) {
+        commonUiService.showSnackBar("Event Updated Successfully");
+      } else {
+        commonUiService.showSnackBar("Event Added Successfully");
+      }
     } else {
       commonUiService.showSnackBar("Please try again later");
     }

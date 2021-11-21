@@ -48,4 +48,6 @@ class LoginViewModel extends BaseViewModel {
       }
     }
   }
+
+  void forgotPassword() {}
 }

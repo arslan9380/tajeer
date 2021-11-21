@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:stacked/stacked.dart';
 import 'package:tajeer/app/constants.dart';
+import 'package:tajeer/models/item_model.dart';
 import 'package:tajeer/view/widgets/description_field.dart';
 import 'package:tajeer/view/widgets/expand_option_widget.dart';
 import 'package:tajeer/view/widgets/expandable_box.dart';
@@ -13,6 +14,10 @@ import 'package:tajeer/view/widgets/inputfield_widget.dart';
 import 'add_item_viewmodel.dart';
 
 class AddItemView extends StatefulWidget {
+  final ItemModel itemModel;
+
+  AddItemView({this.itemModel});
+
   @override
   _AddItemViewState createState() => _AddItemViewState();
 }
@@ -22,6 +27,14 @@ class _AddItemViewState extends State<AddItemView> {
   TextEditingController locationCon = TextEditingController();
   TextEditingController rentCon = TextEditingController();
   TextEditingController descriptionCon = TextEditingController();
+
+  @override
+  void initState() {
+    if (widget.itemModel != null) {
+      presetData();
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,12 +66,17 @@ class _AddItemViewState extends State<AddItemView> {
                                   File(model.itemImage),
                                   fit: BoxFit.cover,
                                 )
-                              : Center(
-                                  child: Image.asset(
-                                    "assets/image_placeholder.png",
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                                ),
+                              : widget.itemModel?.image != null
+                                  ? Image.network(
+                                      widget.itemModel.image,
+                                      fit: BoxFit.cover,
+                                    )
+                                  : Center(
+                                      child: Image.asset(
+                                        "assets/image_placeholder.png",
+                                        color: Theme.of(context).primaryColor,
+                                      ),
+                                    ),
                         ),
                       ),
                       Divider(
@@ -177,8 +195,12 @@ class _AddItemViewState extends State<AddItemView> {
                             ),
                             InkWell(
                               onTap: () {
-                                model.addItem(titleCon.text, locationCon.text,
-                                    rentCon.text, descriptionCon.text);
+                                model.addItem(
+                                    titleCon.text,
+                                    locationCon.text,
+                                    rentCon.text,
+                                    descriptionCon.text,
+                                    widget.itemModel);
                               },
                               child: Container(
                                 width: Get.width * 0.7,
@@ -206,5 +228,12 @@ class _AddItemViewState extends State<AddItemView> {
                 ),
               ),
             ));
+  }
+
+  void presetData() {
+    titleCon.text = widget.itemModel.title;
+    locationCon.text = widget.itemModel.location;
+    rentCon.text = widget.itemModel.rentPerDay;
+    descriptionCon.text = widget.itemModel.description;
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:stacked/stacked.dart';
 import 'package:tajeer/app/constants.dart';
 import 'package:tajeer/view/ui/chat/chat_view.dart';
@@ -113,75 +114,87 @@ class ProfileView extends StatelessWidget {
                                     height: 12,
                                   ),
                                   Expanded(
-                                    child: TabBarView(
-                                        physics: BouncingScrollPhysics(),
-                                        children: [
-                                          RawScrollbar(
-                                            thumbColor:
-                                                Theme.of(context).primaryColor,
-                                            isAlwaysShown: true,
-                                            controller: _publishedScrollCon,
-                                            child: SingleChildScrollView(
+                                    child: ModalProgressHUD(
+                                      inAsyncCall: model.proccesing,
+                                      child: TabBarView(
+                                          physics: BouncingScrollPhysics(),
+                                          children: [
+                                            RawScrollbar(
+                                              thumbColor: Theme.of(context)
+                                                  .primaryColor,
+                                              isAlwaysShown: true,
                                               controller: _publishedScrollCon,
-                                              physics: BouncingScrollPhysics(),
-                                              child: model.publishedItem
-                                                          .length ==
-                                                      0
-                                                  ? NoEventWidget(false)
-                                                  : ListView.builder(
-                                                      itemCount: model
-                                                          .publishedItem.length,
-                                                      physics:
-                                                          NeverScrollableScrollPhysics(),
-                                                      shrinkWrap: true,
-                                                      padding:
-                                                          EdgeInsets.all(5),
-                                                      itemBuilder: (_, index) {
-                                                        return InkWell(
-                                                            onTap: () {},
-                                                            child: ItemWidget(
-                                                              isFromPublish:
-                                                                  true,
-                                                              itemModel: model
-                                                                      .publishedItem[
-                                                                  index],
-                                                            ));
-                                                      }),
+                                              child: SingleChildScrollView(
+                                                controller: _publishedScrollCon,
+                                                physics:
+                                                    BouncingScrollPhysics(),
+                                                child: model.publishedItem
+                                                            .length ==
+                                                        0
+                                                    ? NoEventWidget(false)
+                                                    : ListView.builder(
+                                                        itemCount: model
+                                                            .publishedItem
+                                                            .length,
+                                                        physics:
+                                                            NeverScrollableScrollPhysics(),
+                                                        shrinkWrap: true,
+                                                        padding:
+                                                            EdgeInsets.all(5),
+                                                        itemBuilder:
+                                                            (_, index) {
+                                                          return InkWell(
+                                                              onTap: () {},
+                                                              child: ItemWidget(
+                                                                isFromPublish:
+                                                                    true,
+                                                                itemModel: model
+                                                                        .publishedItem[
+                                                                    index],
+                                                                model: model,
+                                                              ));
+                                                        }),
+                                              ),
                                             ),
-                                          ),
 
-                                          ///--------------------------------
-                                          RawScrollbar(
-                                            thumbColor:
-                                                Theme.of(context).primaryColor,
-                                            isAlwaysShown: true,
-                                            controller: _hidesScrollCon,
-                                            child: SingleChildScrollView(
+                                            ///--------------------------------
+                                            RawScrollbar(
+                                              thumbColor: Theme.of(context)
+                                                  .primaryColor,
+                                              isAlwaysShown: true,
                                               controller: _hidesScrollCon,
-                                              physics: BouncingScrollPhysics(),
-                                              child: model.hideItems.length == 0
-                                                  ? NoEventWidget(false)
-                                                  : ListView.builder(
-                                                      itemCount: model
-                                                          .hideItems.length,
-                                                      physics:
-                                                          NeverScrollableScrollPhysics(),
-                                                      shrinkWrap: true,
-                                                      padding:
-                                                          EdgeInsets.all(5),
-                                                      itemBuilder: (_, index) {
-                                                        return InkWell(
-                                                            onTap: () {},
-                                                            child: ItemWidget(
-                                                              isFromHide: true,
-                                                              itemModel: model
-                                                                      .hideItems[
-                                                                  index],
-                                                            ));
-                                                      }),
+                                              child: SingleChildScrollView(
+                                                controller: _hidesScrollCon,
+                                                physics:
+                                                    BouncingScrollPhysics(),
+                                                child: model.hideItems.length ==
+                                                        0
+                                                    ? NoEventWidget(false)
+                                                    : ListView.builder(
+                                                        itemCount: model
+                                                            .hideItems.length,
+                                                        physics:
+                                                            NeverScrollableScrollPhysics(),
+                                                        shrinkWrap: true,
+                                                        padding:
+                                                            EdgeInsets.all(5),
+                                                        itemBuilder:
+                                                            (_, index) {
+                                                          return InkWell(
+                                                              onTap: () {},
+                                                              child: ItemWidget(
+                                                                isFromHide:
+                                                                    true,
+                                                                model: model,
+                                                                itemModel: model
+                                                                        .hideItems[
+                                                                    index],
+                                                              ));
+                                                        }),
+                                              ),
                                             ),
-                                          ),
-                                        ]),
+                                          ]),
+                                    ),
                                   )
                                 ],
                               ),
