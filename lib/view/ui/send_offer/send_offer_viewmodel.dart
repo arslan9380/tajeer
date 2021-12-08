@@ -25,8 +25,6 @@ class SendOfferViewModel extends BaseViewModel {
 
   Future<void> sendOffer(
       ItemModel itemModel, Chat chatModel, String rent, String note) async {
-    print(itemModel);
-    print(rent);
     if (itemModel == null || rent.isEmpty || note.isEmpty) {
       commonUiService.showSnackBar("Please fill all the fields");
       return;
@@ -38,9 +36,11 @@ class SendOfferViewModel extends BaseViewModel {
       fistName: chatModel.name,
       image: chatModel.imageUrl,
     );
+    UserModel ownerModel = StaticInfo.userModel;
+    ownerModel.rating = "0.0";
 
     OfferModel offerModel = OfferModel(
-        ownerModel: StaticInfo.userModel,
+        ownerModel: ownerModel,
         id: DateTime.now().millisecondsSinceEpoch.toString(),
         renterModel: renterModel,
         startDate: Timestamp.fromDate(fromDate),
@@ -51,7 +51,6 @@ class SendOfferViewModel extends BaseViewModel {
         sendToId: chatModel.uid,
         note: note,
         status: pendingOffer);
-
     await offerService.addOffer(offerModel);
     setProcessing(false);
     Get.back();

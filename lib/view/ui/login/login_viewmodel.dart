@@ -9,6 +9,7 @@ class LoginViewModel extends BaseViewModel {
   AuthService authService = locator<AuthService>();
   CommonUiService commonUiService = locator<CommonUiService>();
   bool loading = false;
+  AuthService authServiceClass = AuthService();
 
   bool isRemember = true;
 
@@ -33,7 +34,6 @@ class LoginViewModel extends BaseViewModel {
     setLoading(true);
     var result = await authService.login(email, password);
     setLoading(false);
-    print(result);
     if (result == "success") {
       Get.offAll(() => UserHomeView());
     } else {

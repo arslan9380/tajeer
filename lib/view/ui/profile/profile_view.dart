@@ -61,7 +61,11 @@ class ProfileView extends StatelessWidget {
               body: model.loading
                   ? Center(child: CircularProgressIndicator())
                   : model.msg != ""
-                      ? Text(model.msg)
+                      ? Center(
+                          child: Text(
+                          model.msg,
+                          textAlign: TextAlign.center,
+                        ))
                       : Container(
                           margin: EdgeInsets.symmetric(horizontal: hMargin),
                           child: DefaultTabController(
@@ -119,6 +123,7 @@ class ProfileView extends StatelessWidget {
                                       child: TabBarView(
                                           physics: BouncingScrollPhysics(),
                                           children: [
+                                            ///----------This part is for publish items
                                             RawScrollbar(
                                               thumbColor: Theme.of(context)
                                                   .primaryColor,
@@ -143,21 +148,18 @@ class ProfileView extends StatelessWidget {
                                                             EdgeInsets.all(5),
                                                         itemBuilder:
                                                             (_, index) {
-                                                          return InkWell(
-                                                              onTap: () {},
-                                                              child: ItemWidget(
-                                                                isFromPublish:
-                                                                    true,
-                                                                itemModel: model
-                                                                        .publishedItem[
-                                                                    index],
-                                                                model: model,
-                                                              ));
+                                                          return ItemWidget(
+                                                            isFromPublish: true,
+                                                            itemModel: model
+                                                                    .publishedItem[
+                                                                index],
+                                                            model: model,
+                                                          );
                                                         }),
                                               ),
                                             ),
 
-                                            ///--------------------------------
+                                            ///--------------------This one for hide items------------
                                             RawScrollbar(
                                               thumbColor: Theme.of(context)
                                                   .primaryColor,
@@ -180,16 +182,13 @@ class ProfileView extends StatelessWidget {
                                                             EdgeInsets.all(5),
                                                         itemBuilder:
                                                             (_, index) {
-                                                          return InkWell(
-                                                              onTap: () {},
-                                                              child: ItemWidget(
-                                                                isFromHide:
-                                                                    true,
-                                                                model: model,
-                                                                itemModel: model
-                                                                        .hideItems[
+                                                          return ItemWidget(
+                                                            isFromHide: true,
+                                                            model: model,
+                                                            itemModel:
+                                                                model.hideItems[
                                                                     index],
-                                                              ));
+                                                          );
                                                         }),
                                               ),
                                             ),

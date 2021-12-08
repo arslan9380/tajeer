@@ -11,10 +11,9 @@ class HomeViewModel extends IndexTrackingViewModel with CommonUiService {
   String selectedCat = "All";
   List<String> itemCats = [
     "All",
-    "Household",
-    "Electronics",
-    "Property",
-    "Vehicle",
+    "Outdoor Living",
+    "Light equipment",
+    "Speakers and Party supplies",
     "Others"
   ];
 
@@ -66,13 +65,13 @@ class HomeViewModel extends IndexTrackingViewModel with CommonUiService {
   void updateLists() {
     if (selectedCat == "All") {
       filteredItems = allItems;
-      notifyListeners();
     } else {
       filteredItems = allItems
           .where((element) =>
               element.category.toLowerCase() == selectedCat.toLowerCase())
           .toList();
     }
+    notifyListeners();
   }
 
   onFilter(String key) {

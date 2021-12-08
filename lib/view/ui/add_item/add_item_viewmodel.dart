@@ -17,10 +17,10 @@ class AddItemViewModel extends BaseViewModel {
   ItemService itemService = locator<ItemService>();
   bool loading = false;
   List<String> itemCats = [
-    "Household",
-    "Electronics",
-    "Property",
-    "Vehicle",
+    "All",
+    "Outdoor Living",
+    "Light equipment",
+    "Speakers and Party supplies",
     "Others"
   ];
 
@@ -103,9 +103,9 @@ class AddItemViewModel extends BaseViewModel {
       ItemModel item = result;
       Get.back(result: item);
       if (itemModel != null) {
-        commonUiService.showSnackBar("Event Updated Successfully");
+        commonUiService.showSnackBar("Item Updated Successfully");
       } else {
-        commonUiService.showSnackBar("Event Added Successfully");
+        commonUiService.showSnackBar("Item Added Successfully");
       }
     } else {
       commonUiService.showSnackBar("Please try again later");

@@ -29,7 +29,6 @@ class _MessageViewState extends State<MessageView> {
     subscription = helper.chatStream.listen((data) {
       setState(() {
         chats = data;
-        print(chats);
         chats.sort((b, a) => a.dateTime.compareTo(b.dateTime));
       });
     });
