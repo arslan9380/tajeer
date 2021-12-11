@@ -92,22 +92,28 @@ class _HomeViewState extends State<HomeView> {
                                 thumbColor: Theme.of(context).primaryColor,
                                 isAlwaysShown: true,
                                 controller: _itemController,
-                                child: SingleChildScrollView(
-                                  controller: _itemController,
-                                  physics: BouncingScrollPhysics(),
-                                  child: ListView.builder(
-                                      itemCount: model.filteredItems.length,
-                                      physics: NeverScrollableScrollPhysics(),
-                                      shrinkWrap: true,
-                                      padding: EdgeInsets.all(5),
-                                      itemBuilder: (_, index) {
-                                        return InkWell(
-                                            onTap: () {},
-                                            child: ItemWidget(
-                                              itemModel:
-                                                  model.filteredItems[index],
-                                            ));
-                                      }),
+                                child: RefreshIndicator(
+                                  onRefresh: () {
+                                    model.initialise();
+                                    return;
+                                  },
+                                  child: SingleChildScrollView(
+                                    controller: _itemController,
+                                    physics: BouncingScrollPhysics(),
+                                    child: ListView.builder(
+                                        itemCount: model.filteredItems.length,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        shrinkWrap: true,
+                                        padding: EdgeInsets.all(5),
+                                        itemBuilder: (_, index) {
+                                          return InkWell(
+                                              onTap: () {},
+                                              child: ItemWidget(
+                                                itemModel:
+                                                    model.filteredItems[index],
+                                              ));
+                                        }),
+                                  ),
                                 ),
                               ),
                             ),

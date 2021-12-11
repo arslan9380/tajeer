@@ -49,15 +49,23 @@ class UserHomeView extends StatelessWidget {
                 ],
               ),
               drawer: DrawerView(),
-              body: IndexedStack(
-                index: model.currentIndex,
-                children: [
-                  HomeView(),
-                  MessageView(),
-                  WishlistView(),
-                  ProfileView(),
-                ],
-              ),
+              body: model.currentIndex == 0
+                  ? HomeView()
+                  : model.currentIndex == 1
+                      ? MessageView()
+                      : model.currentIndex == 2
+                          ? WishlistView()
+                          : ProfileView(),
+
+              // IndexedStack(
+              //       index: model.currentIndex,
+              //       children: [
+              //         HomeView(),
+              //         MessageView(),
+              //         WishlistView(),
+              //         ProfileView(),
+              //       ],
+              //     ),
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerDocked,
               floatingActionButton: FloatingActionButton(
